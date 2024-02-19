@@ -1,4 +1,4 @@
-import { environments } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
 
-  private baseUrl = environments.BASE_URL;
+  private baseUrl = environment.BASE_URL;
   private user?: User | undefined;
 
   get curretUser(): User | undefined {

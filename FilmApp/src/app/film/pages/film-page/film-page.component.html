@@ -1,3 +1,70 @@
-<p>
-  film-page works!
-</p>
+<!-- <mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ film.original_title }}</mat-card-title>
+  </mat-card-header> -->
+
+    <!-- <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen"> -->
+    <!-- <div class="rating-circle" [style.left.px]="circleLeft" [style.bottom.px]="circleBottom" [attr.data-rating]="film.vote_average"> -->
+      <!-- <div class="border-fill"></div> -->
+      <!-- <span class="rating-text">{{ getPercentageRating(film.vote_average) }}</span> -->
+    <!-- </div>
+<br>
+
+  <mat-card-content class="mt-2">
+    <p>
+      <strong>Fecha de estreno: </strong> {{ film.release_date }}
+      <br>
+      <strong>Nota de IMDB: </strong> {{ film.vote_average }}
+    </p>
+  </mat-card-content>
+
+  <mat-divider></mat-divider>
+</mat-card> -->
+
+
+
+
+
+<!-- <mat-card class="movie-card">
+  <mat-card-header>
+    <div mat-card-avatar class="movie-header-img" src="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen"></div>
+    <mat-card-title class="movie-title">The Marvels</mat-card-title>
+    <mat-card-subtitle class="movie-genres">Science Fiction, Adventure, Action</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen">
+  <mat-card-content>
+    <p class="movie-description">
+      Carol Danvers, aka Captain Marvel, has reclaimed her identity from the tyrannical Kree and taken revenge on the Supreme Intelligence. But unintended consequences see Carol shouldering the burden of a destabilized universe. When her duties send her to an anomalous wormhole linked to a Kree revolutionary, her powers become entangled with that of Jersey City super-fan Kamala Khan, aka Ms. Marvel, and Carol’s estranged niece, now S.A.B.E.R. astronaut Captain Monica Rambeau. Together, this unlikely trio must team up and learn to work in concert to save the universe.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary">IMDb Rating: 6.275</button>
+  </mat-card-actions>
+</mat-card> -->
+
+
+<div class="movie_card" [style.backgroundImage]="'url(https://image.tmdb.org/t/p/w500/' + (film.backdrop_path | filmImg) + ')'">
+  <div class="info_section">
+    <div class="movie_header">
+      <img class="locandina" [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen"/>
+      <h1>{{film.original_title}}</h1>
+      <h4>{{film.release_date}}, David Ayer</h4>
+      <span class="minutes">{{film.runtime}} min</span>
+      <p class="type">Action, Crime, Fantasy</p>
+    </div>
+    <div class="movie_desc">
+      <p class="text">
+  {{film.overview}}      </p>
+    </div>
+    <div class="movie_social">
+      <ul>
+        <li><i class="material-icons">share</i></li>
+        <li><i class="material-icons"></i></li>
+        <li><i class="material-icons">chat_bubble</i></li>
+      </ul>
+    </div>
+  </div>
+  <div class="blur_back bright_back" [style.backgroundImage]="'https://image.tmdb.org/t/p/w500/' + (film.backdrop_path
+  | filmImg)"></div>
+
+</div>

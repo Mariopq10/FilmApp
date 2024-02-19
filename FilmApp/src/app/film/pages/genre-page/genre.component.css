@@ -1,0 +1,11 @@
+.button-container {
+  max-width: 100%;
+  overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si los botones exceden el ancho */
+  white-space: nowrap; /* Evita que los botones se envuelvan a la siguiente línea */
+  display: flex;
+  gap: 8px; /* Espacio entre los botones */
+}
+
+.button-container button {
+  min-width: 100px; /* Ajusta el ancho mínimo de los botones según sea necesario */
+}

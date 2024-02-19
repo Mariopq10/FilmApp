@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { Film } from '../interfaces/film';
-import { environments } from 'src/environments/environments';
+import { DataFilm, Film } from '../interfaces/film';
+import { environment } from 'src/environments/environment';
 import { Genre } from '../interfaces/genre';
 
 @Injectable({
@@ -10,8 +10,10 @@ import { Genre } from '../interfaces/genre';
 })
 export class FilmService {
 
-  private baseUrl : string = environments.BASE_URL
-  private apiKey : string = environments.TOKEN
+
+  private baseUrl : string = environment.BASE_URL
+  private apiKey : string = environment.TOKEN
+
 
 constructor(private http : HttpClient) { }
 
@@ -26,18 +28,27 @@ getRatedFilms(page: number): Observable<Film[]> {
   return this.http.get<Film[]>(`${this.baseUrl}movie/top_rated?page=${page.toString()}${this.apiKey}`);
 }
 
-getByGenre(idGenero : number , page : number): Observable<Film[]> {
-  return this.http.get<Film[]>(`${this.baseUrl}discover/movie?with_genres=${idGenero.toString}&page=${page}${this.apiKey}`);
+
+//Probar quitar el page
+getByGenre(idGenero : number): Observable<Film[]> {
+  return this.http.get<Film[]>(`${this.baseUrl}discover/movie?with_genres=${idGenero}${this.apiKey}`);
 }
 
+//Funcion que devuelve los Generos
 getGenres(): Observable<Genre[]>{
   return this.http.get<Genre[]>(`${this.baseUrl}genre/movie/list?&${this.apiKey}`);
 }
 
-getFilmById(id: string): Observable<Film | undefined> {
-  return this.http.get<Film>(`${this.baseUrl}/movie?/${id}`).
+
+//Funcion que devuelve una pelicula dependiendo del id
+getFilmById(id: number | string): Observable<DataFilm | undefined> {
+  if ( !id){
+    return of (undefined)
+  }
+  return this.http.get<DataFilm>(`${this.baseUrl}movie/${id}${this.apiKey}`, environment.MOVIES_API_HEADERS).
     pipe(catchError(error => of(undefined)));
 }
+
 
 
 

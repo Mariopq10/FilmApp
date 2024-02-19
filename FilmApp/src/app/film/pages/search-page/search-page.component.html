@@ -1,3 +1,42 @@
-<p>
-  search-page works!
-</p>
+<div class="custom-form">
+    <form [formGroup]="searchForm" (ngSubmit)="search()">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>Find...</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="searchInput"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let film of filmList">
+      <mat-card  class="movie-card">
+        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen" [routerLink]="['/film', film.id]">
+        <div class="rating-circle" [style.left.px]="5" [style.bottom.px]="45" [attr.data-rating]="film.vote_average" >
+          <div class="border-fill" ></div>
+          <span class="rating-text" *ngIf="getPercentageRating(film.vote_average).slice(0,1)!='0'">{{ getPercentageRating(film.vote_average) }}</span>
+          <span class="no-rate"  *ngIf="getPercentageRating(film.vote_average).slice(0,1) === '0'">No rate</span>
+        </div>
+        <br>
+        <mat-card-content class="mt-2">
+          <p>
+            <strong>{{ film.original_title }}</strong>
+            <br>
+            {{ film.release_date.slice(0,4) }}
+          </p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+      </mat-card>
+    </div>
+    </div>
+
+
+
+
+    <!-- Botón para cargar más resultados -->
+    <button *ngIf="showLoadMoreBtn" mat-stroked-button color="primary" (click)="loadMoreMovies()">Cargar más resultados</button>
+  </div>

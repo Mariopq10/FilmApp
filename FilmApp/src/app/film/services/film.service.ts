@@ -13,7 +13,7 @@ export class FilmService {
 
   private baseUrl : string = environment.BASE_URL
   private apiKey : string = environment.TOKEN
-
+  // public listado : Film[] = []
 
 constructor(private http : HttpClient) { }
 
@@ -39,6 +39,13 @@ getGenres(): Observable<Genre[]>{
   return this.http.get<Genre[]>(`${this.baseUrl}genre/movie/list?&${this.apiKey}`);
 }
 
+
+getMoviesByQuery(busqueda: string, page: number): Observable<Film[]> {
+  const busquedaTrim = busqueda.toLocaleLowerCase().trim();
+  return this.http.get<Film[]>(`${this.baseUrl}search/movie?query=${busquedaTrim}&page=${page}${this.apiKey}`,
+    environment.MOVIES_API_HEADERS
+  );
+}
 
 //Funcion que devuelve una pelicula dependiendo del id
 getFilmById(id: number | string): Observable<DataFilm | undefined> {

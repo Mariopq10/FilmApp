@@ -9,6 +9,7 @@ import { MaterialModule } from '../material/material.module';
 import { FilmRoutingModule } from './film-routing.module';
 import { FilmImgPipe } from './pipes/film-img.pipe';
 import { GenreComponent } from './pages/genre-page/genre.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,9 @@ import { GenreComponent } from './pages/genre-page/genre.component';
   imports: [
     CommonModule,
     MaterialModule,
-    FilmRoutingModule
+    FilmRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class FilmModule { }

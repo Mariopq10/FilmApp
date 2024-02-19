@@ -11,9 +11,9 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class LayoutPageComponent {
 
   public sidebarItems = [
-    { label: 'Novedades', icon: 'flash_on', url: './list' },
-    { label: 'Género', icon: 'subject', url: './genre' },
-    { label: 'Buscar', icon: 'search', url: './search' },
+    { label: 'Top Rated', icon: 'flash_on', url: './list' },
+    { label: 'List by Genres', icon: 'subject', url: './genre' },
+    { label: 'Find', icon: 'search', url: './search' },
   ]
 
 

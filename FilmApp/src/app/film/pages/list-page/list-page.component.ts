@@ -12,12 +12,6 @@ export class ListPageComponent implements OnInit {
   @Input()
   public filmArray: Film[] = [];
 
-  //Prueba
-  genres : Genre[]=[]
-
-
-
-  // filmArray : Film[] = []
   currentPage = 1;
   totalPages: number = 0;
   pagesToShow: number = 5;
@@ -35,10 +29,10 @@ export class ListPageComponent implements OnInit {
   }
 
 
-  //Funcion principal, la que he usado desde el principio.
-  getNovedades() : void{
-    this.filmService.getFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results; this.totalPages = films.total_pages})
-  }
+  //Funcion principal, discover
+  // getNovedades() : void{
+  //   this.filmService.getFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results; this.totalPages = films.total_pages})
+  // }
 
 
   //Funcion para el navigator, muestra las paginas.
@@ -51,21 +45,21 @@ export class ListPageComponent implements OnInit {
   //Funcion para cargar siguiente pagina
   loadMore(): void {
     this.currentPage++;
-    this.filmService.getFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results})
+    this.filmService.getRatedFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results})
   }
 
   //Funcion para cargar pagina anterior
   loadMinus(): void {
     if(this.currentPage>1){
       this.currentPage--;
-      this.filmService.getFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results})
+      this.filmService.getRatedFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results})
     }
   }
 
   //Funcion que carga una pagina a la que se le pasa el numero de pagina por parametro.
   loadPage(page: number): void {
     this.currentPage = page;
-    this.filmService.getFilms(page).subscribe((films : any)=> {this.filmArray = films.results})
+    this.filmService.getRatedFilms(page).subscribe((films : any)=> {this.filmArray = films.results})
 
   }
 

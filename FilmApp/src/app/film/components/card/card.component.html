@@ -23,25 +23,19 @@
 
 
 <mat-card>
-  <a [routerLink]="['/film', film.id]" >
-    <mat-card-header>
-      <mat-card-title>{{ film.title }}</mat-card-title>
-      <mat-card-subtitle>{{ film.original_title }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen">
-  </a>
-
-  <div class="rating-circle" [style.left.px]="circleLeft" [style.bottom.px]="circleBottom" [attr.data-rating]="film.vote_average">
-    <div class="border-fill"></div>
-    <span class="rating-text">{{ getPercentageRating(film.vote_average) }}</span>
+    <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen" [routerLink]="['/film', film.id]">
+  <div class="rating-circle" [style.left.px]="circleLeft" [style.bottom.px]="circleBottom" [attr.data-rating]="film.vote_average" >
+    <div class="border-fill" ></div>
+    <span class="rating-text" *ngIf="getPercentageRating(film.vote_average).slice(0,1)!='0'">{{ getPercentageRating(film.vote_average) }}</span>
+    <span class="no-rate"  *ngIf="getPercentageRating(film.vote_average).slice(0,1) === '0'">No rate</span>
   </div>
   <br>
 
   <mat-card-content class="mt-2">
     <p>
-      <strong>Fecha de estreno: </strong> {{ film.release_date }}
+      <strong> {{ film.original_title}}</strong>
       <br>
-      <strong>Nota de IMDB: </strong> {{ film.vote_average }}
+{{ film.release_date.slice(0,4) }}
     </p>
   </mat-card-content>
 

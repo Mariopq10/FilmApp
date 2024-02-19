@@ -4,7 +4,9 @@
   white-space: nowrap;
 }
 
-
+img{
+  cursor: pointer;
+}
 
 
 .rating-circle {
@@ -33,6 +35,13 @@
   transform: translate(-50%, -50%);
   font-size: 16px; /* Ajusta el tamaño del texto según tus necesidades */
   font-weight: bold;
+  color: #ffffff; /* Color del texto */
+}
+.no-rate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Ajusta el tamaño del texto según tus necesidades */
   color: #ffffff; /* Color del texto */
 }
 

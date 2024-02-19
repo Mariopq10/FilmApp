@@ -48,19 +48,19 @@
     <div class="movie_header">
       <img class="locandina" [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path | filmImg" alt="Imagen"/>
       <h1>{{film.original_title}}</h1>
-      <h4>{{film.release_date}}, aqui poner director</h4>
+      <h4>Release date: {{film.release_date}}</h4>
+      <h3>"{{film.tagline}}"</h3>
       <span class="minutes">{{film.runtime}} min</span>
-      <p class="type">Action, Crime, Fantasy</p>
+      <p *ngFor="let genre of film.genres; let i = index" class="type">{{film.genres[i].name}}</p>
+
     </div>
     <div class="movie_desc">
-      <p class="text">
-  {{film.overview}}      </p>
+      <p class="text">{{film.overview}}</p>
     </div>
     <div class="movie_social">
       <ul>
         <li><i class="material-icons">share</i></li>
         <li><i class="material-icons"></i></li>
-        <li><i class="material-icons">chat_bubble</i></li>
       </ul>
     </div>
   </div>

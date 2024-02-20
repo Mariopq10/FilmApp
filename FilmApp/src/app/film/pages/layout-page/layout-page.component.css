@@ -1,0 +1,14 @@
+.footer {
+  background-color: #333; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 10px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto al centro */
+  position: fixed; /* Fijar en la parte inferior de la página */
+  left: 0; /* Alinear a la izquierda */
+  bottom: 0; /* Alinear en la parte inferior */
+  width: 100%; /* Ancho completo */
+}
+
+.container{
+  margin-bottom: 60px;
+}

@@ -9,7 +9,7 @@ import { FilmService } from '../services/film.service';
 
 // Por fin el puto pipe
 export class FilmImgPipe implements PipeTransform {
-  transform(posterPath : string ): string {
+  transform(posterPath : string |null): string {
       if(posterPath){
         return posterPath;
       }else{

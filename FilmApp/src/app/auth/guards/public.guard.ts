@@ -12,7 +12,7 @@ const checkAuthStatus = (): Observable<boolean> => {
   .pipe(
     tap( isAuthenticated =>{
       if(isAuthenticated){
-        router.navigate(['/heroes'])
+        router.navigate(['/film'])
       }
     }),
     map(isAuthenticated =>!isAuthenticated)

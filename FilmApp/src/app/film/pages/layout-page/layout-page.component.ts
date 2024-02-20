@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class LayoutPageComponent {
 
   public sidebarItems = [
-    { label: 'Top Rated', icon: 'flash_on', url: './list' },
+    { label: 'Top Rated', icon: 'flash_on', url: './list', },
     { label: 'List by Genres', icon: 'subject', url: './genre' },
     { label: 'Find', icon: 'search', url: './search' },
   ]
@@ -26,11 +26,11 @@ export class LayoutPageComponent {
     }
 
     onLogout() : void {
-      this.authService.logout()
+      this.authService.doLogout()
       this.router.navigate(['/auth/login'])
     }
 
     get user() : User | undefined{
-      return this.authService.currentUser
+      return this.authService.getCurrentUser()
     }
 }

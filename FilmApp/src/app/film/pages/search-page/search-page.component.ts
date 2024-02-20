@@ -58,7 +58,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   //Funcion que modifica el valor de la página actual para realizar una busqueda en la siguiente page
-  public loadMoreMovies() {
+  public loadMore() {
     this.currentPage++;
     this.loadFilms();
   }

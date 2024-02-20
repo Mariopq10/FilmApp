@@ -18,7 +18,6 @@ export class ListPageComponent implements OnInit {
   constructor( private filmService : FilmService) { }
 
   ngOnInit() {
-    // this.filmService.getGenres().subscribe((genre : any) =>{this.genres = genre.results})
     if ( this.filmArray.length==0){
       this.filmService.getRatedFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results; this.totalPages = films.total_pages})
     }else{

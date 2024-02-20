@@ -30,8 +30,8 @@ getRatedFilms(page: number): Observable<Film[]> {
 
 
 //Probar quitar el page
-getByGenre(idGenero : number): Observable<Film[]> {
-  return this.http.get<Film[]>(`${this.baseUrl}discover/movie?with_genres=${idGenero}${this.apiKey}`);
+getByGenre(idGenero : number, page: number): Observable<Film[]> {
+  return this.http.get<Film[]>(`${this.baseUrl}discover/movie?with_genres=${idGenero}page=${page}${this.apiKey}`);
 }
 
 //Funcion que devuelve los Generos

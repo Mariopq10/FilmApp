@@ -19,12 +19,15 @@
     </mat-nav-list>
   </mat-sidenav>
 
+
+  <!--  -->
   <mat-toolbar color="primary">
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <span class="spacer"></span>
     <span>{{ user?.usuario}}</span>
+    <!-- <span>{{ nombre_publico}}</span> -->
     <button mat-button (click)="onLogout()">
       Logout
     </button>
@@ -32,7 +35,9 @@
 
   <div class="container">
     <router-outlet></router-outlet>
-    <!--  -->
   </div>
+  <footer class="footer">Mario</footer>
 
 </mat-sidenav-container>
+
+

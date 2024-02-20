@@ -1,7 +1,9 @@
-<div *ngIf="filmArray.length === 0" class="button-container" #container>
+<div class="button-container" #container>
   <div *ngFor="let genre of genres; let i = index" >
-    <button mat-button cdkDrag (click)="getByGenre(genres[i].id)">{{ genre.name }}</button>
+    <button mat-button cdkDrag (click)="getByGenre(genres[i].id, currentPage)">{{ genre.name }}</button>
   </div>
 </div>
-
 <list-page [filmArray]="filmArray" />
+
+
+

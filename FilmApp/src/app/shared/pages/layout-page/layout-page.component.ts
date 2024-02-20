@@ -11,15 +11,19 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class LayoutPageComponent {
 
   public sidebarItems = [
-    { label: 'Top Rated', icon: 'flash_on', url: './list', },
-    { label: 'List by Genres', icon: 'subject', url: './genre' },
-    { label: 'Find', icon: 'search', url: './search' },
+    { label: 'Top Rated', icon: 'flash_on', url: '/film/list' },
+    { label: 'List by Genres', icon: 'subject', url: '/film/genre' },
+    { label: 'Users', icon: 'supervisor_account', url: '/users' },
+    { label: 'Find', icon: 'search', url: '/film/search' },
   ]
-
+  nombre_usuario: string | null;
 
   constructor(
     private authService : AuthService,
-    private router : Router){ }
+    private router : Router){
+      this.nombre_usuario = localStorage.getItem("nombre_publico") ;
+    }
+
 
     onClick() : void {
       this.authService

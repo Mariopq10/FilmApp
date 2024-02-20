@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { URL_BASE } from '../../../environments/environment';
 import { ApiResponse } from '../../shared/interfaces/api-response';
 import { CommonService } from 'src/app/shared/validators/common.service';
-import { UsersService } from './users-service.service';
+import { UserService } from '../../users/services/users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +23,10 @@ export class AuthService {
     private http: HttpClient,
     private cookieService: CookieService,
     private commonService: CommonService,
-    private usersService: UsersService,
+    private userService: UserService,
     private httpClient: HttpClient
     ) {
-      this.user = usersService.currentUser
+      // this.user = userService.currentUser
       this.getCurrentUser();
      }
 

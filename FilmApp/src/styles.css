@@ -8,3 +8,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.spacer {
+  flex: 1 1;
+}

@@ -12,6 +12,11 @@ const routes: Routes = [
   {
     path : 'film',
     loadChildren: () => import('./film/film.module').then(m=>m.FilmModule),
+    canActivate : [AuthGuard]
+  },
+  {
+    path : 'users',
+    loadChildren: () => import('./users/users.module').then(m=>m.UsersModule),
     // canActivate : [AuthGuard]
   },
   {

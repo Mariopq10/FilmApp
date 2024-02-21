@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces/user.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout-page',
@@ -17,11 +18,13 @@ export class LayoutPageComponent {
     { label: 'Find', icon: 'search', url: '/film/search' },
   ]
   nombre_usuario: string | null;
+  id_rol: string | null;
 
   constructor(
     private authService : AuthService,
     private router : Router){
       this.nombre_usuario = localStorage.getItem("nombre_publico") ;
+      this.id_rol = localStorage.getItem("id_rol") ;
     }
 
 
@@ -37,4 +40,13 @@ export class LayoutPageComponent {
     get user() : User | undefined{
       return this.authService.getCurrentUser()
     }
-}
+
+    isUserAdmin():boolean {
+      if(this.id_rol=='1'){
+        return true
+      }else{
+        return false
+      }
+    }
+  }
+

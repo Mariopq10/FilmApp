@@ -17,8 +17,6 @@ export class AuthService {
 
   private user?: User | undefined;
 
-  // private user?: User;
-
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
@@ -104,6 +102,35 @@ doLogout() {
   //   return this.http.put<ApiResponse>(`${URL_API}/reset_pass.php`, body);
 
   // }
+
+checkAdminRole(): Promise<boolean>{
+  return new Promise((resolve,reject)=>{
+    const user = this.getCurrentUser();
+    console.log(user)
+    if (user && user.id_rol=='1'){
+      resolve(true);
+    }else{
+      resolve(false)
+    }
+    console.log(resolve)
+  })
+}
+
+//Comprobaciones para AdminGuard, recogemos la id_rol del usuario actual.
+getUser(): Observable<User | undefined> {
+  if (this.user) {
+    return of(structuredClone(this.user));
+  } else {
+    // Si el usuario no está disponible, puedes devolver un observable vacío o un observable de 'undefined'
+    return of(undefined);
+  }
+}
+isUserAdmin(): Observable<boolean> {
+  return this.getUser().pipe(
+    map(user => !!user && user.id_rol === '1'),
+    catchError(() => of(false)) // Manejar cualquier error devolviendo false
+  );
+}
 }
 
 

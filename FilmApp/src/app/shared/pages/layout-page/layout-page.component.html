@@ -10,16 +10,35 @@
       </button>
     </mat-toolbar>
 
-    <!--Contenido del sidenav (nav list)-->
-    <mat-nav-list>
+    <!-- Antiguo nav-list -->
+    <!-- <mat-nav-list>
       <mat-list-item *ngFor="let item of sidebarItems" (click)="sidenav.toggle()" routerLink={{item.url}}>
         <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
         {{item.label}}
       </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
+    </mat-nav-list> -->
 
 
+<!--Contenido del sidenav (nav list)-->
+  <mat-nav-list>
+    <mat-list-item (click)="sidenav.toggle()" routerLink="/film/list">
+      <mat-icon matListItemIcon>flash_on</mat-icon>
+      Top Rated
+    </mat-list-item>
+    <mat-list-item (click)="sidenav.toggle()" routerLink="/film/genre">
+      <mat-icon matListItemIcon>subject</mat-icon>
+      List by Genres
+    </mat-list-item>
+    <mat-list-item (click)="sidenav.toggle()" routerLink="/users" *ngIf="isUserAdmin()">
+      <mat-icon matListItemIcon>supervisor_account</mat-icon>
+      Users
+    </mat-list-item>
+    <mat-list-item (click)="sidenav.toggle()" routerLink="/film/search">
+      <mat-icon matListItemIcon>search</mat-icon>
+      Find
+    </mat-list-item>
+  </mat-nav-list>
+</mat-sidenav>
   <!--  -->
   <mat-toolbar color="primary">
     <button mat-icon-button (click)="sidenav.toggle()">
@@ -27,7 +46,6 @@
     </button>
     <span class="spacer"></span>
     <span>{{ nombre_usuario}}</span>
-    <!-- <span>{{ nombre_publico}}</span> -->
     <button mat-button (click)="onLogout()">
       Logout
     </button>
@@ -36,7 +54,7 @@
   <div class="container">
     <router-outlet></router-outlet>
   </div>
-  <footer class="footer">Mario</footer>
+  <footer class="footer">Mario Pérez</footer>
 
 </mat-sidenav-container>
 

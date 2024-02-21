@@ -3,6 +3,25 @@ import { AuthService } from '../services/auth.service';
 import { Injectable, inject } from "@angular/core";
 import { Observable, map, tap } from "rxjs";
 
+@Injectable({
+  providedIn: 'root'
+})
+export class NoLoginGuard implements CanActivate {
+
+  constructor(public auth: AuthService, public router: Router) { }
+
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    const response = await this.auth.isLoged();
+    if (response) {
+      this.router.navigate(['/film']);
+    }
+    return true;
+  }
+}
+
+
+
+
 
 // const checkLoged = (): Observable<boolean> => {
 //   const authService: AuthService = inject(AuthService);

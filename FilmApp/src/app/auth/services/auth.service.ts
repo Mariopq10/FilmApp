@@ -23,10 +23,7 @@ export class AuthService {
     private commonService: CommonService,
     private userService: UserService,
     private httpClient: HttpClient
-    ) {
-      // this.user = userService.currentUser
-      this.getCurrentUser();
-     }
+    ) { }
 
   doLogin(data: any) {
     const body = JSON.stringify(data);
@@ -63,6 +60,18 @@ public async isAuthenticated(url: string): Promise<boolean> {
 
     this.http.get<ApiResponse>(`${URL_API}/check_usuarios.php?ruta=${rutaSeleccionada}`, { headers: this.commonService.getHeaders() })
       .subscribe((response: ApiResponse) => {
+        console.log(response)
+        resolve(response.ok);
+      });
+  });
+  return promise;
+}
+
+public async isLoged(): Promise<boolean> {
+  const promise = new Promise<boolean>((resolve, reject) => {
+    this.http.get<ApiResponse>(`${URL_API}/check_usuarios.php?ruta=inicio`, { headers: this.commonService.getHeaders() })
+      .subscribe((response: ApiResponse) => {
+        console.log(response)
         resolve(response.ok);
       });
   });
@@ -118,6 +127,8 @@ checkAdminRole(): Promise<boolean>{
 
 //Comprobaciones para AdminGuard, recogemos la id_rol del usuario actual.
 getUser(): Observable<User | undefined> {
+  console.log(structuredClone(' ????'))
+  console.log(this.user)
   if (this.user) {
     return of(structuredClone(this.user));
   } else {
@@ -127,7 +138,7 @@ getUser(): Observable<User | undefined> {
 }
 isUserAdmin(): Observable<boolean> {
   return this.getUser().pipe(
-    map(user => !!user && user.id_rol === '1'),
+    map(user2 => !!user2 && user2.id_rol == '1') ,
     catchError(() => of(false)) // Manejar cualquier error devolviendo false
   );
 }

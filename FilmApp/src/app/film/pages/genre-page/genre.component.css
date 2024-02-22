@@ -4,8 +4,30 @@
   white-space: nowrap; /* Evita que los botones se envuelvan a la siguiente línea */
   display: flex;
   gap: 8px; /* Espacio entre los botones */
+  overflow-y: hidden;
+  margin-bottom: 20px;
 }
 
 .button-container button {
   min-width: 100px; /* Ajusta el ancho mínimo de los botones según sea necesario */
+}
+
+
+.button-container::-webkit-scrollbar {
+  width: 10px; /* Ancho de la barra lateral */
+  background-color: #f1f1f100; /* Color de fondo de la barra lateral */
+}
+
+.button-container::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* Color del pulgar de la barra lateral */
+  border-radius: 5px; /* Radio de borde del pulgar */
+}
+
+.button-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color del pulgar de la barra lateral cuando se pasa el mouse sobre él */
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 20px; /* Opcional: para agregar un poco de espacio entre el contenido y el botón */
 }

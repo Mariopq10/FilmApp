@@ -3,7 +3,20 @@
     <button mat-button cdkDrag (click)="getByGenre(genres[i].id, currentPage)">{{ genre.name }}</button>
   </div>
 </div>
-<list-page [filmArray]="filmArray" />
 
+<!-- <list-page [filmArray]="filmArray" /> -->
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let film of filmArray">
+      <film-card [film]="film"></film-card>
+    </div>
+  </div>
+</div>
 
-
+<div class="text-center">
+  <button mat-stroked-button color="primary"  *ngIf="filmArray.length>0 ; else emptyState" (click)="loadMore()">Cargar más resultados</button>
+  <ng-template #emptyState>
+    <!-- Si filmArray está vacío, mostrar un mensaje alternativo -->
+    <strong>Select Genre</strong>
+  </ng-template>
+</div>

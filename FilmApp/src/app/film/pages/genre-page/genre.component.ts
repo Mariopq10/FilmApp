@@ -23,11 +23,16 @@ export class GenreComponent implements OnInit {
   }
 
   getByGenre(genreId: number , currentPage : number) {
-    if ( genreId ==this.currentGenre){
-      this.filmService.getByGenre(genreId, this.currentPage).subscribe((films: any) => {
+
+    if ( genreId == this.currentGenre){
+      this.filmService.getByGenre(genreId, currentPage).subscribe((films: any) => {
         this.filmArray = [...this.filmArray, ...films.results]
+        console.log(this.filmArray)
+        console.log(currentPage)
       });
     }else{
+      console.log('else')
+      this.currentGenre= genreId
       this.currentPage = 1
       this.filmService.getByGenre(genreId, this.currentPage).subscribe((films: any) => {
         this.filmArray = films.results

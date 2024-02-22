@@ -11,6 +11,8 @@ import { Film } from '../../interfaces/film';
 export class SearchPageComponent implements OnInit {
   public filmList: Film[] = [];
   public searchForm: FormGroup;
+  public busqueda: string = ""
+
 
   // Variable para almacenar el número de página actual
   public currentPage: number = 1;
@@ -19,14 +21,16 @@ export class SearchPageComponent implements OnInit {
 
   constructor(
     public filmService: FilmService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
   ) {
     this.searchForm = new FormGroup({
       searchInput: new FormControl('')
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.filmList)
+  }
 
   //Se almacena el valor que recoge el formulario en una const finder y llamamos a la funcion loadFilms() para cargar las peliculas
   public search() {
@@ -41,14 +45,39 @@ export class SearchPageComponent implements OnInit {
 
   //Funcion que realiza la carga de las peliculas llamando al servicio y realizando subscribe sobre el array de Film[]
   private loadFilms() {
-    const busqueda = this.searchForm.get('searchInput')!.value;
-    this.filmService.getMoviesByQuery(busqueda, this.currentPage).subscribe(
+    if (this.searchForm.get('searchInput')!.value == this.busqueda) {
+    } else {
+      this.busqueda = this.searchForm.get('searchInput')!.value;
+      this.filmList=[]
+      this.filmService.getMoviesByQuery(this.busqueda, this.currentPage).subscribe(
+        (films: any) => {
+          if (films.results) {
+            this.filmList = [...this.filmList, ...films.results]
+            this.showLoadMoreBtn = true;
+            //No cargar mas peliculas si no recibe results
+          } else {
+            // this.showLoadMoreBtn = false
+          }
+        },
+        (error) => {
+          console.error('Error en la solicitud HTTP:', error);
+        }
+      );
+    }
+
+  }
+
+  //Funcion que modifica el valor de la página actual para realizar una busqueda en la siguiente page
+  public loadMore() {
+    this.currentPage++;
+    this.filmService.getMoviesByQuery(this.busqueda, this.currentPage).subscribe(
       (films: any) => {
         if (films.results) {
           this.filmList = [...this.filmList, ...films.results]
           this.showLoadMoreBtn = true;
           //No cargar mas peliculas si no recibe results
         } else {
+          // this.showLoadMoreBtn=false
         }
       },
       (error) => {
@@ -57,16 +86,5 @@ export class SearchPageComponent implements OnInit {
     );
   }
 
-  //Funcion que modifica el valor de la página actual para realizar una busqueda en la siguiente page
-  public loadMore() {
-    this.currentPage++;
-    this.loadFilms();
-  }
-
-  //Funcion que redondea el valor de la variable vote_average de la interfaz film
-  getPercentageRating(voteAverage: number): string {
-    const percentage = Math.round(voteAverage * 10); // Redondear al entero más cercano
-    return percentage.toString(); // Convertir a cadena y agregar el símbolo de porcentaje
-  }
 }
 

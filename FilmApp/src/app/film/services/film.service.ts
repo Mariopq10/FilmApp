@@ -10,72 +10,48 @@ import { Genre } from '../interfaces/genre';
 })
 export class FilmService {
 
+  private baseUrl: string = environment.BASE_URL
+  private apiKey: string = environment.TOKEN
 
-  private baseUrl : string = environment.BASE_URL
-  private apiKey : string = environment.TOKEN
-  // public listado : Film[] = []
-
-constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
-// Novedades Descubrimientos
-getFilms(page: number): Observable<Film[]> {
-  return this.http.get<Film[]>(`${this.baseUrl}discover/movie?page=${page.toString()}${this.apiKey}`);
-}
-
-// Top Rated
-getRatedFilms(page: number): Observable<Film[]> {
-  return this.http.get<Film[]>(`${this.baseUrl}movie/top_rated?page=${page.toString()}${this.apiKey}`);
-}
-
-
-//Probar quitar el page
-getByGenre(idGenero : number, page: number): Observable<Film[]> {
-  return this.http.get<Film[]>(`${this.baseUrl}discover/movie?with_genres=${idGenero}page=${page}${this.apiKey}`);
-}
-
-//Funcion que devuelve los Generos
-getGenres(): Observable<Genre[]>{
-  return this.http.get<Genre[]>(`${this.baseUrl}genre/movie/list?&${this.apiKey}`);
-}
-
-
-getMoviesByQuery(busqueda: string, page: number): Observable<Film[]> {
-  const busquedaTrim = busqueda.toLocaleLowerCase().trim();
-  return this.http.get<Film[]>(`${this.baseUrl}search/movie?query=${busquedaTrim}&page=${page}${this.apiKey}`,
-    environment.MOVIES_API_HEADERS
-  );
-}
-
-//Funcion que devuelve una pelicula dependiendo del id
-getFilmById(id: number | string): Observable<DataFilm | undefined> {
-  if ( !id){
-    return of (undefined)
+  // Funcion que devuelve un array de Film[] basado en los descubrimientos semanales.
+  getFilms(page: number): Observable<Film[]> {
+    return this.http.get<Film[]>(`${this.baseUrl}discover/movie?page=${page.toString()}${this.apiKey}`);
   }
-  return this.http.get<DataFilm>(`${this.baseUrl}movie/${id}${this.apiKey}`, environment.MOVIES_API_HEADERS).
-    pipe(catchError(error => of(undefined)));
-}
+
+  // Funcion que devuelve un Film[] de las peliculas mejor valoradas.
+  getRatedFilms(page: number): Observable<Film[]> {
+    return this.http.get<Film[]>(`${this.baseUrl}movie/top_rated?page=${page.toString()}${this.apiKey}`);
+  }
 
 
+  //Funcion que realiza una busqueda en la api dependiendo de la idGenero y page que le pasemos por parametros.
+  getByGenre(idGenero: number, page: number): Observable<Film[]> {
+    return this.http.get<Film[]>(`${this.baseUrl}discover/movie?with_genres=${idGenero}&page=${page}${this.apiKey}`);
+  }
 
+  //Funcion que devuelve el id y nombre de cada genero y lo almacena en un array.
+  getGenres(): Observable<Genre[]> {
+    return this.http.get<Genre[]>(`${this.baseUrl}genre/movie/list?&${this.apiKey}`);
+  }
 
+  // Funcion que devuelve un array de Film el cual le pasamos una busqueda por parametros, esa busqueda será una palabra asociada al titulo de una pelicula
+  getMoviesByQuery(busqueda: string, page: number): Observable<Film[]> {
+    const busquedaTrim = busqueda.toLocaleLowerCase().trim();
+    return this.http.get<Film[]>(`${this.baseUrl}search/movie?query=${busquedaTrim}&page=${page}${this.apiKey}`,
+      environment.MOVIES_API_HEADERS
+    );
+  }
 
-
-
-// getSuggestions(query: String): Observable<Film[]> {
-//   return this.http.get<Film[]>(`${this.baseUrl}/film?q=${query}&_limit=6`)
-// }
-
-// addHero(film: Film): Observable<Film> {
-//   return this.http.post<Film>(`${this.baseUrl}/film`, film)
-// }
-// updateHero(film: Film): Observable<Film> {
-//   return this.http.patch<film>(`${this.baseUrl}/film/${hero.id}`, hero)
-// }
-// deleteHeroById(id: string): Observable<boolean> {
-//   return this.http.delete<Film>(`${this.baseUrl}/film/${id}`).pipe(
-//     map(response => true),
-//     catchError(error => of(false))
-//   )
+  //Funcion que devuelve los datos asociados a una pelicula, en este caso a un objeto DataFilm
+  getFilmById(id: number | string): Observable<DataFilm | undefined> {
+    if (!id) {
+      return of(undefined)
+    }
+    return this.http.get<DataFilm>(`${this.baseUrl}movie/${id}${this.apiKey}`, environment.MOVIES_API_HEADERS).
+      pipe(catchError(error => of(undefined)));
+  }
 
 }

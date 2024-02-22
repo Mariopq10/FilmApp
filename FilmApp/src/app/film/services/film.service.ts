@@ -8,6 +8,8 @@ import { Genre } from '../interfaces/genre';
 @Injectable({
   providedIn: 'root'
 })
+
+//Clase FilmService que recoge todas las funciones relacionadas con la API de TMDB
 export class FilmService {
 
   private baseUrl: string = environment.BASE_URL

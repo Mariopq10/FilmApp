@@ -5,6 +5,7 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { FilmPageComponent } from './pages/film-page/film-page.component';
 import { GenreComponent } from './pages/genre-page/genre.component';
+import { FavPageComponent } from './pages/fav-page/fav-page.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     {path:'search', component:SearchPageComponent},
     {path:'list', component:ListPageComponent},
     {path:'genre', component:GenreComponent},
+    {path:'fav', component:FavPageComponent},
     {path:':id', component:FilmPageComponent},
     {path:'**', redirectTo:'list'},
   ]

@@ -55,10 +55,8 @@ export class UserService {
         index = indexFilter;
       }
     });
-
     if (index) {
       this.users[index] = user;
     }
   }
-
 }

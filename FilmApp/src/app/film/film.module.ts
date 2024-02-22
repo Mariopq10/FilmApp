@@ -10,6 +10,7 @@ import { FilmRoutingModule } from './film-routing.module';
 import { FilmImgPipe } from './pipes/film-img.pipe';
 import { GenreComponent } from './pages/genre-page/genre.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FavPageComponent } from './pages/fav-page/fav-page.component';
 
 
 
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SearchPageComponent,
     GenreComponent,
     CardComponent,
-    FilmImgPipe
+    FilmImgPipe,
+    FavPageComponent
   ],
   imports: [
     CommonModule,

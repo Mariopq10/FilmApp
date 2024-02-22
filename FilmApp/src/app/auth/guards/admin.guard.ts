@@ -8,9 +8,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-
-
-//Guard para comprobacion si usuario es o no un SuperAdmin
+//Guard para comprobacion si usuario es o no un SuperAdmin (Podrá acceder o no a la tabla Users)
 export class AdminGuard implements CanActivate {
 
   constructor(public auth: AuthService, public router: Router) { }
@@ -23,4 +21,4 @@ export class AdminGuard implements CanActivate {
     }
     return true;
   }
-  }
+}

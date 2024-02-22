@@ -45,8 +45,6 @@ export class SearchPageComponent implements OnInit {
 
   //Funcion que realiza la carga de las peliculas llamando al servicio y realizando subscribe sobre el array de Film[]
   private loadFilms() {
-    if (this.searchForm.get('searchInput')!.value == this.busqueda) {
-    } else {
       this.busqueda = this.searchForm.get('searchInput')!.value;
       this.filmList=[]
       this.filmService.getMoviesByQuery(this.busqueda, this.currentPage).subscribe(
@@ -63,7 +61,7 @@ export class SearchPageComponent implements OnInit {
           console.error('Error en la solicitud HTTP:', error);
         }
       );
-    }
+
 
   }
 

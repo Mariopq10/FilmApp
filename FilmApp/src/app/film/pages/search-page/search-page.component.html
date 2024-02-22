@@ -1,8 +1,8 @@
 <div class="custom-form">
-  <form [formGroup]="searchForm" (ngSubmit)="search()">
+  <form [formGroup]="searchForm">
     <mat-form-field class="custom-mat-form-field">
       <mat-label>Find...</mat-label>
-      <input type="text" matInput formControlName="searchInput" />
+      <input type="text" matInput formControlName="searchInput" (input)="search()" />
     </mat-form-field>
   </form>
 </div>
@@ -13,7 +13,6 @@
       <film-card [film]="film"></film-card>
     </div>
   </div>
-
 
   <div class="text-center">
     <!-- Botón para cargar más resultados, se mostrará solo si filmList no está vacío -->

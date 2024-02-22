@@ -23,12 +23,10 @@ export class ListPageComponent implements OnInit {
     }else{
 
     }
-    // this.filmService.getFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results; this.totalPages = films.total_pages})
 
   }
 
-
-  //Funcion principal, discover
+  //Funcion principal, discover (Desuso.)
   // getNovedades() : void{
   //   this.filmService.getFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results; this.totalPages = films.total_pages})
   // }
@@ -59,10 +57,5 @@ export class ListPageComponent implements OnInit {
   loadPage(page: number): void {
     this.currentPage = page;
     this.filmService.getRatedFilms(page).subscribe((films : any)=> {this.filmArray = films.results})
-
   }
-
-
-
-
 }

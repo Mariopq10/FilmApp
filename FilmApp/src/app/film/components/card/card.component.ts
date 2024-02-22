@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Film } from '../../interfaces/film';
 import { FilmService } from '../../services/film.service';
+import { FilmImgPipe } from '../../pipes/film-img.pipe';
 
 @Component({
   selector: 'film-card',

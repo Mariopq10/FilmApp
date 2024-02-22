@@ -29,6 +29,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FilmRoutingModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers : [
+    FilmImgPipe
   ]
 })
 export class FilmModule { }

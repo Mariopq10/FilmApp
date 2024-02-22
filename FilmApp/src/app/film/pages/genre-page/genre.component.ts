@@ -18,8 +18,6 @@ export class GenreComponent implements OnInit {
 
   ngOnInit() {
     this.filmService.getGenres().subscribe((genre: any) => { this.genres = genre.genres; console.log(genre) })
-
-    //  this.filmService.getByGenre(this.currentGenre , 28).subscribe((films : any)=> {this.filmArray = films.results})
   }
 
   getByGenre(genreId: number , currentPage : number) {
@@ -31,7 +29,6 @@ export class GenreComponent implements OnInit {
         console.log(currentPage)
       });
     }else{
-      console.log('else')
       this.currentGenre= genreId
       this.currentPage = 1
       this.filmService.getByGenre(genreId, this.currentPage).subscribe((films: any) => {

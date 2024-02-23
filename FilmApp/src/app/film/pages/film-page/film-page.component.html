@@ -60,7 +60,11 @@
     <div class="movie_social">
       <ul>
         <li><i class="material-icons">share</i></li>
-        <li><i class="material-icons"></i></li>
+        <li>
+          <button mat-icon-button (click)="addFav()">
+            <mat-icon [ngClass]="{ 'red': fav }">favorite</mat-icon>
+          </button>
+        </li>
       </ul>
     </div>
   </div>

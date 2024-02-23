@@ -12,17 +12,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./fav-page.component.css']
 })
 export class FavPageComponent {
-  public filmArray: DataFilm[] =[];
+  public filmArray: DataFilm[] = [];
 
-  filmListIds : number []=[]
+  filmListIds: number[] = []
   // public user : User;
 
-  // id_usuario : string | null ;
+  id_usuario: string | null;
   // public user : User;
-  constructor( private filmService : FilmService , private favService : FavService, private authService : AuthService) {
-    // this.id_usuario = localStorage.getItem('id_usuario')
+  constructor(private filmService: FilmService, private favService: FavService, private authService: AuthService) {
+    this.id_usuario = localStorage.getItem('id_usuario')
 
-   }
+  }
 
   ngOnInit() {
     this.getIdsFavoritas()
@@ -30,24 +30,23 @@ export class FavPageComponent {
 
 
   async getIdsFavoritas() {
-    const RESPONSE = await this.favService.getFavs('61').toPromise();
+    const RESPONSE = await this.favService.getFavs(this.id_usuario).toPromise();
     if (RESPONSE) {
       this.filmListIds = RESPONSE.data.map((item: { id_pelicula: any }) => item.id_pelicula);
-
     }
-    console.log(this.filmListIds)
     this.getDataFilm();
   }
 
-  async getDataFilm(){
-    for (let i in this.filmListIds){
+  async getDataFilm() {
+    for (let i in this.filmListIds) {
       console.log(i)
       console.log(this.filmListIds)
-      const RESPONSE  = await this.filmService.getFilmById(this.filmListIds[i]).subscribe(
-        (pelicula) =>
-          {if(pelicula != null) {
-        this.filmArray.push(pelicula)
-          }}
+      const RESPONSE = await this.filmService.getFilmById(this.filmListIds[i]).subscribe(
+        (pelicula) => {
+          if (pelicula != null) {
+            this.filmArray.push(pelicula)
+          }
+        }
       )
     }
   }

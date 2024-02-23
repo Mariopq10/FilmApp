@@ -49,14 +49,21 @@ export class FavService {
     const body = JSON.stringify(user);
     return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php${route}`, body, { headers: this.commonService.headers });
   }
+  addFav(id_usuario: string | null , id_pelicula: string| null) {
+    const body = JSON.stringify({ id_usuario: id_usuario, id_pelicula: id_pelicula });
+    console.log(body)
+    return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, body, { headers: this.commonService.headers });
+  }
 
   deleteFav(id_usuario: number , id_pelicula : number) {
     return this.http.delete<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, { headers: this.commonService.headers });
   }
 
-  insertarFav(id_usuario: number | string, id_pelicula: number | string) {
+  insertarFav(id_usuario: string | null , id_pelicula: string| null) {
     const body = JSON.stringify({ id_usuario: id_usuario, id_pelicula: id_pelicula });
+    console.log(body)
     return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`, body, { headers: this.commonService.headers });
+
   }
 
   async getIdsFavoritas(id_usuario: string) {

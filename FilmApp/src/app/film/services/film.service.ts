@@ -49,11 +49,14 @@ export class FilmService {
 
   //Funcion que devuelve los datos asociados a una pelicula, en este caso a un objeto DataFilm
   getFilmById(id: number | string): Observable<DataFilm | undefined> {
-    if (!id) {
-      return of(undefined)
-    }
-    return this.http.get<DataFilm>(`${this.baseUrl}movie/${id}${this.apiKey}`, environment.MOVIES_API_HEADERS).
+    // if (!id) {
+    //   return of(undefined)
+    // }
+    return this.http.get<DataFilm | undefined>(`${this.baseUrl}movie/${id}${this.apiKey}`, environment.MOVIES_API_HEADERS).
       pipe(catchError(error => of(undefined)));
   }
+
+
+
 
 }

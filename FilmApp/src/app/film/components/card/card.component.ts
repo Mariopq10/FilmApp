@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Film } from '../../interfaces/film';
+import { DataFilm, Film } from '../../interfaces/film';
 import { FilmService } from '../../services/film.service';
 import { FilmImgPipe } from '../../pipes/film-img.pipe';
 
@@ -10,7 +10,7 @@ import { FilmImgPipe } from '../../pipes/film-img.pipe';
 })
 export class CardComponent implements OnInit {
   @Input()
-  public film!: Film;
+  public film!: Film | DataFilm;
 
   circleLeft: number = 5;
   circleBottom: number = 45;

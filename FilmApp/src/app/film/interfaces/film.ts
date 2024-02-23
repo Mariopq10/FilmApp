@@ -10,7 +10,7 @@ export interface Film {
   video: boolean,
   vote_average:number,
   vote_count: number,
-  backdrop_path: string
+  backdrop_path: string | null
 }
 
 export interface Page{

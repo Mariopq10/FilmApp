@@ -83,9 +83,6 @@ class Favorito extends Conexion
 
     // Método para obtener los alumnos de una determinada id_vacante y de una determinada unidad,
  
-
-        // Cierra la conexión
-        $this->closeConnection();
     }
 
 ?>

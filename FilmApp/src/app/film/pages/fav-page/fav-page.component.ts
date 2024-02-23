@@ -25,9 +25,6 @@ export class FavPageComponent {
    }
 
   ngOnInit() {
-    // this.favService.getFavs(this.id_usuario).subscribe((films : any) => {this.filmArray = films.results})
-    // console.log(this.authService.getCurrentUser())
-    // this.favService.getFavs("61")
     this.getIdsFavoritas()
   }
 
@@ -42,16 +39,7 @@ export class FavPageComponent {
     this.getDataFilm();
   }
 
-
-
   async getDataFilm(){
-    // for (let id in this.filmListIds){
-    //   const RESPONSE  = await this.filmService.getFilmById(id).toPromise()
-    //   if (RESPONSE){
-    //     console.log(RESPONSE)
-    //     this.filmArray.push()
-    //   }
-    // }
     for (let i in this.filmListIds){
       console.log(i)
       console.log(this.filmListIds)
@@ -61,22 +49,8 @@ export class FavPageComponent {
         this.filmArray.push(pelicula)
           }}
       )
-      // if (RESPONSE){
-      //   console.log(RESPONSE)
-      //   this.filmArray.push()
-      // }
     }
-
   }
 
-
-
-  // getFilmById(id: number | string): Observable<DataFilm | undefined> {
-  //   if (!id) {
-  //     return of(undefined)
-  //   }
-  //   return this.http.get<DataFilm>(`${this.baseUrl}movie/${id}${this.apiKey}`, environment.MOVIES_API_HEADERS).
-  //     pipe(catchError(error => of(undefined)));
-  // }
 
 }

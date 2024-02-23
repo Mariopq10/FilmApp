@@ -16,7 +16,7 @@ const routes: Routes = [
     {path:'search', component:SearchPageComponent},
     {path:'list', component:ListPageComponent},
     {path:'genre', component:GenreComponent},
-    {path:'fav', component:FavPageComponent},
+    {path:'favs', component:FavPageComponent},
     {path:':id', component:FilmPageComponent},
     {path:'**', redirectTo:'list'},
   ]

@@ -136,6 +136,7 @@ getUser(): Observable<User | undefined> {
     return of(undefined);
   }
 }
+
 isUserAdmin(): Observable<boolean> {
   return this.getUser().pipe(
     map(user2 => !!user2 && user2.id_rol == '1') ,

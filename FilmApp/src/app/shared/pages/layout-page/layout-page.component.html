@@ -37,8 +37,16 @@
       <mat-icon matListItemIcon>search</mat-icon>
       Find
     </mat-list-item>
+
+    <mat-list-item (click)="sidenav.toggle()" routerLink="/film/favs">
+      <mat-icon matListItemIcon>favorite_border</mat-icon>
+      Favs
+    </mat-list-item>
+
   </mat-nav-list>
 </mat-sidenav>
+
+
   <!--  -->
   <mat-toolbar color="primary">
     <button mat-icon-button (click)="sidenav.toggle()">

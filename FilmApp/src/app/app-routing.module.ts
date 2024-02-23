@@ -17,6 +17,11 @@ const routes: Routes = [
     canActivate : [AuthGuard]
   },
   {
+    path : 'favs',
+    loadChildren: () => import('./film/film.module').then(m=>m.FilmModule),
+    canActivate : [AuthGuard]
+  },
+  {
     path : 'users',
     loadChildren: () => import('./users/users.module').then(m=>m.UsersModule),
     canActivate : [AdminGuard]

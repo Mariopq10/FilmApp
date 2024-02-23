@@ -39,8 +39,7 @@ export class FavPageComponent {
 
   async getDataFilm() {
     for (let i in this.filmListIds) {
-      console.log(i)
-      console.log(this.filmListIds)
+
       const RESPONSE = await this.filmService.getFilmById(this.filmListIds[i]).subscribe(
         (pelicula) => {
           if (pelicula != null) {

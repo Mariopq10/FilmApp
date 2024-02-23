@@ -37,7 +37,7 @@ export class FavService {
 
 
   getFavs(id_usuario: string  | null) {
-    return this.http.get<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}` , { headers: this.commonService.headers });
+    return this.http.get<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}` , { headers: this.commonService.getHeaders() });
   }
 
   addUser(user: User) {
@@ -45,24 +45,27 @@ export class FavService {
     return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`, body, { headers: this.commonService.headers });
   }
 
-  editUser(user: User,  route?: string) {
-    const body = JSON.stringify(user);
-    return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php${route}`, body, { headers: this.commonService.headers });
-  }
+  // editUser(user: User,  route?: string) {
+  //   const body = JSON.stringify(user);
+  //   return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php${route}`, body, { headers: this.commonService.headers });
+  // }
   addFav(id_usuario: string | null , id_pelicula: string| null) {
-    const body = JSON.stringify({ id_usuario: id_usuario, id_pelicula: id_pelicula });
-    console.log(body)
-    return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, body, { headers: this.commonService.headers });
+    // const body = JSON.stringify({ id_usuario: id_usuario, id_pelicula: id_pelicula });
+    // console.log(body)
+    console.log(this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`,  { headers: this.commonService.headers }))
+    return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, { headers: this.commonService.getHeaders() });
   }
 
   deleteFav(id_usuario: number , id_pelicula : number) {
-    return this.http.delete<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, { headers: this.commonService.headers });
+    return this.http.delete<ApiResponse>(`${URL_API}/fav.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, { headers: this.commonService.headers });
   }
 
   insertarFav(id_usuario: string | null , id_pelicula: string| null) {
     const body = JSON.stringify({ id_usuario: id_usuario, id_pelicula: id_pelicula });
     console.log(body)
+
     return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`, body, { headers: this.commonService.headers });
+
 
   }
 

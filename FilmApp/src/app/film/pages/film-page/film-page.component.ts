@@ -3,6 +3,7 @@ import { DataFilm, Film } from '../../interfaces/film';
 import { FilmService } from '../../services/film.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FavService } from '../../services/fav.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'film-page',
@@ -18,6 +19,7 @@ export class FilmPageComponent implements OnInit {
   constructor(private filmService : FilmService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar,
     private favService : FavService) { }
 
   ngOnInit() {
@@ -48,13 +50,25 @@ export class FilmPageComponent implements OnInit {
   }
 
 
-  addFav (){
+  // addFav (){
 
-    this.fav = !this.fav;
+  //   this.fav = !this.fav;
+  //   const id_pelicula = this.activatedRoute.snapshot.paramMap.get('id');
+  //   this.favService.addFav(localStorage.getItem('id_usuario'),id_pelicula)
+  //   console.log(id_pelicula)
+
+  // }
+
+  async addFav() {
     const id_pelicula = this.activatedRoute.snapshot.paramMap.get('id');
-    this.favService.addFav(localStorage.getItem('id_usuario'),id_pelicula)
-    console.log(id_pelicula)
-
+      const response = await this.favService.addFav(localStorage.getItem('id_usuario'), id_pelicula).toPromise();
+      console.log(response)
+      if (response) {
+        this.snackBar.open("Agregada a favoritas", 'Cerrar', { duration: 5000 });
+      } else {
+        this.snackBar.open('Error al agregar a favoritas', 'Cerrar', { duration: 5000 });
+      }
+    }
   }
 
-}
+

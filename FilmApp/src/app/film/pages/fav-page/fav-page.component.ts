@@ -15,10 +15,8 @@ export class FavPageComponent {
   public filmArray: DataFilm[] = [];
 
   filmListIds: number[] = []
-  // public user : User;
 
   id_usuario: string | null;
-  // public user : User;
   constructor(private filmService: FilmService, private favService: FavService, private authService: AuthService) {
     this.id_usuario = localStorage.getItem('id_usuario')
 
@@ -39,7 +37,6 @@ export class FavPageComponent {
 
   async getDataFilm() {
     for (let i in this.filmListIds) {
-
       const RESPONSE = await this.filmService.getFilmById(this.filmListIds[i]).subscribe(
         (pelicula) => {
           if (pelicula != null) {

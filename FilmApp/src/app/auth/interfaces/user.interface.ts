@@ -1,3 +1,5 @@
+
+// Interfaz User, recibirá los datos desde el backend.
 export interface User {
   id_usuario?: string;
   usuario: string;

@@ -10,52 +10,57 @@ import { Genre } from '../../interfaces/genre';
 })
 export class ListPageComponent implements OnInit {
   @Input()
-  public filmArray: Film[] = [];
+  public filmArray: Film[] = []; // Array que contiene las películas a mostrar en la lista
 
   currentPage = 1;
   totalPages: number = 0;
   pagesToShow: number = 5;
-  constructor( private filmService : FilmService) { }
+  constructor(private filmService: FilmService) { }
 
+  /**
+   * Método que se ejecuta al inicializar el componente.
+   * Se encarga de obtener las películas de la primera página si el array de películas está vacío.
+   */
   ngOnInit() {
-    if ( this.filmArray.length==0){
-      this.filmService.getRatedFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results; this.totalPages = films.total_pages})
-    }else{
-
+    if (this.filmArray.length == 0) {
+      this.filmService.getRatedFilms(this.currentPage).subscribe((films: any) => { this.filmArray = films.results; this.totalPages = films.total_pages })
     }
-
   }
 
-  //Funcion principal, discover (Desuso.)
-  // getNovedades() : void{
-  //   this.filmService.getFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results; this.totalPages = films.total_pages})
-  // }
-
-
-  //Funcion para el navigator, muestra las paginas.
+  /**
+   * Método para generar los números de página a mostrar en la barra de navegación.
+   * @returns Un array con los números de página.
+   */
   generatePageNumbers(): number[] {
     const startPage = Math.max(1, this.currentPage - Math.floor(this.pagesToShow / 2));
     const endPage = Math.min(this.totalPages, startPage + this.pagesToShow - 1);
     return Array.from({ length: (endPage - startPage) + 1 }, (_, index) => index + startPage);
   }
 
-  //Funcion para cargar siguiente pagina
+  /**
+   * Método para cargar la siguiente página de películas.
+   */
   loadMore(): void {
     this.currentPage++;
-    this.filmService.getRatedFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results})
+    this.filmService.getRatedFilms(this.currentPage).subscribe((films: any) => { this.filmArray = films.results })
   }
 
-  //Funcion para cargar pagina anterior
+  /**
+   * Método para cargar la página anterior de películas.
+   */
   loadMinus(): void {
-    if(this.currentPage>1){
+    if (this.currentPage > 1) {
       this.currentPage--;
-      this.filmService.getRatedFilms(this.currentPage).subscribe((films : any)=> {this.filmArray = films.results})
+      this.filmService.getRatedFilms(this.currentPage).subscribe((films: any) => { this.filmArray = films.results })
     }
   }
 
-  //Funcion que carga una pagina a la que se le pasa el numero de pagina por parametro.
+  /**
+   * Método para cargar una página específica de películas.
+   * @param page El número de página a cargar.
+   */
   loadPage(page: number): void {
     this.currentPage = page;
-    this.filmService.getRatedFilms(page).subscribe((films : any)=> {this.filmArray = films.results})
+    this.filmService.getRatedFilms(page).subscribe((films: any) => { this.filmArray = films.results })
   }
 }

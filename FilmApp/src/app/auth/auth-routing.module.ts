@@ -6,12 +6,12 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   {
-    //localhost:4300/auth/
+    //localhost:4200/auth/
     path: '',
     component: LayoutPageComponent,
     children: [
       { path: 'login', component: LoginPageComponent },
-      { path: '**', redirectTo: 'login' },
+      { path: '**', redirectTo: 'login' }, // Redireccionar cualquier ruta no reconocida a la página de inicio de sesión
     ]
   }
 ]

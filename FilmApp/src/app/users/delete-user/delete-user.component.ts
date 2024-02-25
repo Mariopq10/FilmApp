@@ -21,6 +21,10 @@ export class DeleteUserComponent implements OnInit {
 ngOnInit() {
 }
 
+/**
+ * Funcion que elimina un usuario, realizara una llamada al UserService.
+ * Mostrará un snackbar con el resultado de la operación.
+ */
 async deleteUser() {
   const RESP = await this.userService
     .deleteUsuario(this.user)
@@ -35,6 +39,9 @@ async deleteUser() {
   }
 }
 
+/**
+ * Método que cierra el dialogo sin eliminar el usuario.
+ */
 onNoClick() {
 this.dialogRef.close({ok: false});
 }

@@ -14,9 +14,8 @@ import { CLOSE, INVALID_FORM } from 'src/app/shared/messages';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-
-  usuarioForm!: FormGroup;
-  roles!: Rol[];
+  usuarioForm!: FormGroup; // Formulario para editar usuario
+  roles!: Rol[]; // Lista de roles disponibles
 
   constructor(
     public dialogRef: MatDialogRef<EditUserComponent>,
@@ -24,9 +23,14 @@ export class EditUserComponent implements OnInit {
     private userService: UserService,
     public snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public user: User
-  ) {}
+  ) { }
 
+  /**
+   * Método que se llama cuando se inicializa el componente.
+   * Inicializa el formulario para editar un usuario existente.
+   */
   ngOnInit() {
+    // Inicialización del formulario
     this.usuarioForm = new FormGroup({
       id_usuario: new FormControl(this.user.id_usuario, [
         Validators.required,
@@ -47,6 +51,10 @@ export class EditUserComponent implements OnInit {
     this.getRoles();
   }
 
+  /**
+   * Método para obtener la lista de roles disponibles.
+   * Llama al servicio para obtener los roles y maneja la respuesta.
+   */
   async getRoles() {
     const RESPONSE = await this.servicioRoles.getAllRoles().toPromise();
     if (RESPONSE) {
@@ -62,6 +70,11 @@ export class EditUserComponent implements OnInit {
     }
   }
 
+
+  /**
+   * Método para confirmar la edición de usuario.
+   * Verifica si el formulario es válido, envía la solicitud de edición al servicio y maneja la respuesta.
+   */
   async confirmAdd() {
     if (this.usuarioForm.valid) {
       const usuario = this.usuarioForm.value;
@@ -83,6 +96,9 @@ export class EditUserComponent implements OnInit {
     }
   }
 
+  /**
+   * Método para cerrar el cuadro de diálogo sin guardar los cambios de edicion.
+   */
   onNoClick(): void {
     this.dialogRef.close({ ok: false });
   }

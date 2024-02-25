@@ -23,6 +23,9 @@ export class AddUserComponent implements OnInit {
               public snackBar: MatSnackBar
   ) { }
 
+  /**
+   * Iniciamos el componente y inicializamos el formulario para añadir un usuario.
+   */
   ngOnInit() {
     this.usuarioForm = new FormGroup({
       usuario: new FormControl(null, [Validators.required, Validators.email]),
@@ -35,6 +38,9 @@ export class AddUserComponent implements OnInit {
     this.getRoles();
   }
 
+  /**
+   * Funcion asincrona donde se obtiene todos los roles disponibles.
+   */
   async getRoles() {
     const RESPONSE = await this.servicioRoles.getAllRoles().toPromise();
     if (RESPONSE && RESPONSE.ok && RESPONSE.data) {
@@ -42,8 +48,12 @@ export class AddUserComponent implements OnInit {
     }
   }
 
+  /**
+   * Método para confirmar el insert de un usuario.
+   * Si el formulario es válido, agrega el usuario utilizando el servicio UserService.
+   * En caso de error muestra el mensaje en un snackbar.
+   */
   async confirmAdd() {
-    // console.log(this.usuarioForm.value);
     if (this.usuarioForm.valid) {
       const usuario = this.usuarioForm.value;
 
@@ -61,6 +71,9 @@ export class AddUserComponent implements OnInit {
     }
   }
 
+  /**
+   * Método para cerrar el diálogo sin agregar el usuario.
+   */
   onNoClick(): void {
     this.dialogRef.close({ok: false});
   }

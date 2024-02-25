@@ -11,42 +11,42 @@ import { Observable } from 'rxjs';
 })
 export class LayoutPageComponent {
 
-  public sidebarItems = [
-    { label: 'Top Rated', icon: 'flash_on', url: '/film/list' },
-    { label: 'List by Genres', icon: 'subject', url: '/film/genre' },
-    { label: 'Users', icon: 'supervisor_account', url: '/users' },
-    { label: 'Find', icon: 'search', url: '/film/search' },
-  ]
-  nombre_usuario: string | null;
-  id_rol: string | null;
+  nombre_usuario: string | null; //Nombre de usuario logado.
+  id_rol: string | null; // Id del usuario logado.
 
   constructor(
-    private authService : AuthService,
-    private router : Router){
-      this.nombre_usuario = localStorage.getItem("nombre_publico") ;
-      this.id_rol = localStorage.getItem("id_rol") ;
-    }
+    private authService: AuthService,
+    private router: Router) {
+    this.nombre_usuario = localStorage.getItem("nombre_publico");
+    this.id_rol = localStorage.getItem("id_rol");
+  }
 
+  /**
+   * Método para realizar el logout, llama al servicio y redirecciona al auth/login.
+   */
+  onLogout(): void {
+    this.authService.doLogout()
+    this.router.navigate(['/auth/login'])
+  }
 
-    onClick() : void {
-      this.authService
-    }
+   /**
+   * Método que obtiene el usuario actualmente autenticado, llama al servicio y obtiene el usuario.
+   * @returns El usuario actual.
+   */
+  get user(): User | undefined {
+    return this.authService.getCurrentUser()
+  }
 
-    onLogout() : void {
-      this.authService.doLogout()
-      this.router.navigate(['/auth/login'])
-    }
-
-    get user() : User | undefined{
-      return this.authService.getCurrentUser()
-    }
-
-    isUserAdmin():boolean {
-      if(this.id_rol=='1'){
-        return true
-      }else{
-        return false
-      }
+  /**
+   * Verifica si el usuario actual es administrador.
+   * @returns True si el usuario es administrador, de lo contrario devolverá False.
+   */
+  isUserAdmin(): boolean {
+    if (this.id_rol == '1') {
+      return true
+    } else {
+      return false
     }
   }
+}
 

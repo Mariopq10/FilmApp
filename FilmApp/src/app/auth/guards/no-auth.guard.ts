@@ -6,7 +6,13 @@ import { Observable, map, tap } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-//Guard que comprueba si el usuario esta logado, en caso afirmativo no podrá volver a la ruta selecionada en el routing.
+
+/**
+   * Método canActivate para comprobar si el usuario está logueado.
+   * @param route La ruta activada actualmente.
+   * @param state El estado de la ruta actual.
+   * @returns Promise<boolean> Promesa que indica si se permite o no la navegación.
+   */
 export class NoLoginGuard implements CanActivate {
 
   constructor(public auth: AuthService, public router: Router) { }

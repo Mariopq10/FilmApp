@@ -17,7 +17,7 @@
 }
 
 .pagination li button {
-  background-color: #007bff; /* Color de fondo del botón */
+  background-color: #63eeab; /* Color de fondo del botón */
   color: white; /* Color del texto del botón */
   border: none;
   padding: 8px 12px; /* Espaciado interno del botón */
@@ -27,11 +27,11 @@
 }
 
 .pagination li button:hover {
-  background-color: #0056b3; /* Color de fondo del botón al pasar el cursor */
+  background-color: #53c08b; /* Color de fondo del botón al pasar el cursor */
 }
 
 .pagination li.active button {
-  background-color: #0056b3; /* Color de fondo del botón activo */
+  background-color: #47a276; /* Color de fondo del botón activo */
 }
 
 .pagination li button[disabled] {
@@ -39,3 +39,8 @@
   cursor: not-allowed; /* Cursor de no permitido para botones deshabilitados */
 }
 
+#texto{
+  font-size: 28px;
+  text-align: center;
+  margin-top: 30px;
+}

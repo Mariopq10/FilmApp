@@ -8,7 +8,12 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-//Guard que comprueba si el usuario esta autenticado, en caso negativo, no podrá acceder a la aplicación.
+/**
+   * Método canActivate para comprobar si el usuario está autenticado antes de acceder a una ruta protegida.
+   * @param route La ruta activada actualmente.
+   * @param state El estado de la ruta actual.
+   * @returns Promise<boolean> Promesa que indica si se permite o no la navegación.
+   */
 export class AuthGuardService implements CanActivate {
 
   constructor(public auth: AuthService, public router: Router) { }

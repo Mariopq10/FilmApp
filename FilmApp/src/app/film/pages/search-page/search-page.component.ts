@@ -9,10 +9,9 @@ import { Film } from '../../interfaces/film';
   styleUrls: ['./search-page.component.css']
 })
 export class SearchPageComponent implements OnInit {
-  public filmList: Film[] = [];
+  public filmList: Film[] = []; // Array que almacena las películas encontradas
   public searchForm: FormGroup;
   public busqueda: string = ""
-
 
   // Variable para almacenar el número de página actual
   public currentPage: number = 1;
@@ -32,7 +31,10 @@ export class SearchPageComponent implements OnInit {
     console.log(this.filmList)
   }
 
-  //Se almacena el valor que recoge el formulario en una const finder y llamamos a la funcion loadFilms() para cargar las peliculas
+  /**
+   * Método para realizar la búsqueda de películas.
+   * Se almacena el valor que recoge el formulario en una const finder y llamamos a la funcion loadFilms() para cargar las peliculas
+   */
   public search() {
     const finder = this.searchForm.get('searchInput')!.value;
     if (!finder.trim()) {
@@ -44,28 +46,33 @@ export class SearchPageComponent implements OnInit {
 
 
   //Funcion que realiza la carga de las peliculas llamando al servicio y realizando subscribe sobre el array de Film[]
+
+  /**
+   * Método para cargar las películas correspondientes a la búsqueda.
+   * Realiza la carga de las peliculas llamando al servicio y realizando subscribe sobre el array de Film[]
+   */
   private loadFilms() {
-      this.busqueda = this.searchForm.get('searchInput')!.value;
-      this.filmList=[]
-      this.filmService.getMoviesByQuery(this.busqueda, this.currentPage).subscribe(
-        (films: any) => {
-          if (films.results) {
-            this.filmList = [...this.filmList, ...films.results]
-            this.showLoadMoreBtn = true;
-            //No cargar mas peliculas si no recibe results
-          } else {
-            // this.showLoadMoreBtn = false
-          }
-        },
-        (error) => {
-          console.error('Error en la solicitud HTTP:', error);
+    this.busqueda = this.searchForm.get('searchInput')!.value;
+    this.filmList = []
+    this.filmService.getMoviesByQuery(this.busqueda, this.currentPage).subscribe(
+      (films: any) => {
+        if (films.results) {
+          this.filmList = [...this.filmList, ...films.results]
+          this.showLoadMoreBtn = true;
+          //No cargar mas peliculas si no recibe results
+        } else {
+          // this.showLoadMoreBtn = false
         }
-      );
-
-
+      },
+      (error) => {
+        console.error('Error en la solicitud HTTP:', error);
+      });
   }
 
-  //Funcion que modifica el valor de la página actual para realizar una busqueda en la siguiente page
+  /**
+   * Método que modifica el valor de la página actual para realizar una busqueda en la siguiente page
+   *
+   */
   public loadMore() {
     this.currentPage++;
     this.filmService.getMoviesByQuery(this.busqueda, this.currentPage).subscribe(
@@ -83,6 +90,4 @@ export class SearchPageComponent implements OnInit {
       }
     );
   }
-
 }
-

@@ -31,29 +31,42 @@ export class FavService {
               private authService : AuthService,
               ) { }
 
-
-
-
+/**
+   * Metodo que obtiene las películas favoritas de un usuario.
+   * @param id_usuario El ID del usuario del que se obtienen las películas favoritas.
+   * @returns Un Observable que emite una ApiResponse con las películas favoritas.
+   */
   getFavs(id_usuario: string  | null) {
     return this.http.get<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}` , { headers: this.commonService.getHeaders() });
   }
 
-  // addUser(user: User) {
-  //   const body = JSON.stringify(user);
-  //   return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`, body, { headers: this.commonService.headers });
-  // }
-
+  /**
+   * Metodo que añade una película a la lista de favoritos de un usuario.
+   * @param id_usuario El ID del usuario al que se añade la película como favorita.
+   * @param id_pelicula El ID de la película que se añade como favorita.
+   * @returns Un Observable que emite una ApiResponse.
+   */
   addFav(id_usuario: string | null , id_pelicula: string| null) {
-    // const body = JSON.stringify({ id_usuario: id_usuario, id_pelicula: id_pelicula });
-    // console.log(body)
     console.log(this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`,  { headers: this.commonService.headers }))
     return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, { headers: this.commonService.getHeaders() });
   }
 
+  /**
+   * Metodo que elimina una película de la lista de favoritos de un usuario.
+   * @param id_usuario El ID del usuario del que se elimina la película favorita.
+   * @param id_pelicula El ID de la película que se elimina de la lista de favoritos.
+   * @returns Un Observable que emite una ApiResponse.
+   */
   deleteFav(id_usuario: string |null , id_pelicula : string | null) {
     return this.http.delete<ApiResponse>(`${URL_API}/fav.php?id_usuario=${id_usuario}&id_pelicula=${id_pelicula}`, { headers: this.commonService.headers });
   }
 
+  /**
+   * Metodo que inserta una película como favorita para un usuario en el backend.
+   * @param id_usuario El ID del usuario al que se añade la película como favorita.
+   * @param id_pelicula El ID de la película que se añade como favorita.
+   * @returns Un Observable que emite una ApiResponse.
+   */
   insertarFav(id_usuario: string | null , id_pelicula: string| null) {
     const body = JSON.stringify({ id_usuario: id_usuario, id_pelicula: id_pelicula });
     console.log(body)
@@ -61,6 +74,10 @@ export class FavService {
     return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`, body, { headers: this.commonService.headers });
   }
 
+  /**
+   * Funcion asincrona que obtiene los IDs de las películas favoritas de un usuario y las almacena en idFilmList[]
+   * @param id_usuario El ID del usuario del que se obtienen las películas favoritas.
+   */
   async getIdsFavoritas(id_usuario: string) {
     const RESPONSE = await this.getFavs(id_usuario).toPromise();
     if (RESPONSE !== undefined && RESPONSE.permises !== undefined && RESPONSE.ok) {

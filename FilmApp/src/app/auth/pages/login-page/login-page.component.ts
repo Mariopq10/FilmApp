@@ -13,12 +13,15 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login-page.component.css'
   ]
 })
+
+// Componente LoginPageComponent para controlar el acceso de usuarios.
+// Controlará los input recibidos del html y realizará consultas al backend con esos datos.
+// En caso de error mostrará por pantalla un snackbar
 export class LoginPageComponent {
 
   @Output() valueChange = new EventEmitter();
 
   loginForm!: FormGroup;
-  titulo = 'LOG IN';
   alerta!: string;
   showSpinner!: boolean;
   error!: string;
@@ -34,6 +37,10 @@ export class LoginPageComponent {
     private fb: FormBuilder
   ) {}
 
+  /**
+   * Método que se ejecuta al inicializar el componente.
+   * Configura el formulario de inicio de sesión.
+   */
   ngOnInit() {
     this.setForm();
   }
@@ -45,6 +52,11 @@ export class LoginPageComponent {
     });
   }
 
+   /**
+   * Función para iniciar sesión.
+   * Comprueba la validez del formulario, envía los datos al servicio de autenticación y gestiona la respuesta.
+   * Si recibe respuesta, recogerá los datos de la consulta y las pasará al localStorage.
+   */
   async acceder() {
     if (this.loginForm.valid) {
       const data = this.loginForm.value;
@@ -60,11 +72,13 @@ export class LoginPageComponent {
             localStorage.setItem('ultimoGrupo', RESPONSE.data.grupo);
             localStorage.setItem('id_rol', RESPONSE.data.id_rol);
             localStorage.setItem('id_usuario', RESPONSE.data.id_usuario);
+            // Establecer los headers para las solicitudes HTTP
             this.commonService.headers = new HttpHeaders({
               'Content-Type': 'application/json',
               Authorization: `Bearer ${RESPONSE.data.token}`
             });
             console.log(localStorage['nombre_publico']);
+            // Redireccionar a la página de películas
             this.router.navigate([`/film/`]);
           } else if (RESPONSE.data.valido === 0) {
             this.snackBar.open('Usuario inhabilitado', 'Cerrar', { duration: 5000 });
@@ -74,16 +88,5 @@ export class LoginPageComponent {
         }
       }
     }
-  }
-
-  forgotPassword() {
-    this.valueChange.emit(true);
-  }
-
-  onUsernameEnter() {
-    this.usernameEntered = true;
-    setTimeout(() => {
-      this.passwordInput.nativeElement.focus();
-    }, 0);
   }
 }

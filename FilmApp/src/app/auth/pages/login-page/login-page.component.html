@@ -1,16 +1,21 @@
+
 <div class="login-container">
   <div class="login-box">
     <h2>Welcome to IMDB impostor</h2>
     <form [formGroup]="loginForm" (ngSubmit)="acceder()">
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="username" placeholder="Email address...">
-        <mat-error *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+        <input matInput formControlName="username" placeholder="Email address..." (input)="checkEmailValidity()" [readonly]="usernameEntered">
+        <mat-error *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
           Email address is required
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <div *ngIf="!usernameEntered">
+        <button type="button" mat-flat-button color="primary" class="login-button" (click)="checkEmailValidity()">Next</button>
+      </div>
+
+      <mat-form-field appearance="fill" *ngIf="usernameEntered">
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" placeholder="Password...">
         <mat-error *ngIf="loginForm?.get('password')?.invalid && (loginForm?.get('password')?.dirty || loginForm?.get('password')?.touched)">
@@ -18,7 +23,7 @@
         </mat-error>
       </mat-form-field>
 
-      <button type="submit" mat-flat-button color="primary" class="login-button">Log in</button>
+      <button type="submit" mat-flat-button color="primary" class="login-button" *ngIf="usernameEntered">Login</button>
     </form>
 
     <div class="forgot-password">

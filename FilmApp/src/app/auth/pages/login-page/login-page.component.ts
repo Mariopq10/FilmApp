@@ -22,9 +22,6 @@ export class LoginPageComponent {
   @Output() valueChange = new EventEmitter();
 
   loginForm!: FormGroup;
-  alerta!: string;
-  showSpinner!: boolean;
-  error!: string;
   usernameEntered = false;
   @ViewChild('passwordInput') passwordInput!: ElementRef;
 
@@ -45,11 +42,31 @@ export class LoginPageComponent {
     this.setForm();
   }
 
+  /**
+   * Funcion que inicializa el formulario de validacion del usuario y contraseña
+   * Comprueba que la estructura del email sea valido.
+   */
   setForm() {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required, Validators.pattern(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
       password: ['', Validators.required]
     });
+  }
+
+
+  /**
+   * Funcion que se ejecuta al pulsar el boton check email, realiza una comprobacion para saber si el email introducido es valido.
+   * Modifica el valor de la variable usernameEntered.
+   */
+  checkEmailValidity() {
+    const usernameControl = this.loginForm.get('username');
+    if (usernameControl?.valid) {
+      setTimeout(() => {
+        this.usernameEntered = true;
+      }, 3000); // Espera 3 segundos antes de mostrar el campo de contraseña
+    } else {
+      this.usernameEntered = false;
+    }
   }
 
    /**
@@ -58,7 +75,7 @@ export class LoginPageComponent {
    * Si recibe respuesta, recogerá los datos de la consulta y las pasará al localStorage.
    */
   async acceder() {
-    if (this.loginForm.valid) {
+    if (this.loginForm.valid && this.usernameEntered) {
       const data = this.loginForm.value;
       const RESPONSE = await this.authService.doLogin(data).toPromise();
 

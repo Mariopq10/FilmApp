@@ -16,11 +16,13 @@ class Favorito extends Conexion
         parent::__construct();
     }
 
-    // Método para obtener todas las peliculas favoritas
+    // Metodo para obtener todas las peliculas favoritas de un usuario.
     public function get($id_usuario)
     {
-        $sql = $this->conexion->prepare("SELECT * FROM a_peliculas WHERE id_usuario = $id_usuario");
+        $sql = $this->conexion->prepare("SELECT * FROM a_peliculas WHERE id_usuario = :id_usuario");
+        $sql->bindParam(":id_usuario", $id_usuario);
         $exito = $sql->execute();
+
 
         if ($exito) {
             $this->status = true;
@@ -29,18 +31,13 @@ class Favorito extends Conexion
         $this->closeConnection();
     }
 
-    // Método para crear una vacante
+    // Metodo para crear una pelicula favorita
     public function create($id_usuario,$id_pelicula)
     {
-        // $id = isset($data['id']) ? $data['id'] : null;
-        $id_usuario = isset($data['id_usuario']) ? $data['id_usuario'] : null;
-        $id_pelicula = isset($data['id_pelicula']) ? $data['id_pelicula'] : null;
-
         if (isset($id_usuario) && isset($id_pelicula)) {
-            $sql = $this->conexion->prepare("INSERT INTO a_peliculas (id_usuario, id_pelicula )
-                    VALUES (:id_usuario, :id_pelicula)");
-            $sql->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
-            $sql->bindParam(":id_pelicula", $id_pelicula, PDO::PARAM_INT);
+            $sql = $this->conexion->prepare("INSERT INTO a_peliculas (id_usuario, id_pelicula) VALUES (:id_usuario, :id_pelicula)");
+            $sql->bindParam(":id_usuario", $id_usuario);
+            $sql->bindParam(":id_pelicula", $id_pelicula);
 
             $resultado = $sql->execute();
             if ($resultado) {
@@ -54,21 +51,18 @@ class Favorito extends Conexion
         }
     }
 
-    
 
-    // Método para borrar una vacante por ID
+    // Metodo para borrar una pelicula favorita de un usuario.
     public function delete($id_usuario, $id_pelicula)
     {
         if (isset($id_usuario)) {
             try {
                 $sql = $this->conexion->prepare("DELETE FROM a_peliculas WHERE id_usuario = $id_usuario AND id_pelicula = $id_pelicula");
-                // $sql->bindParam(":id_vacante", $id_vacante, PDO::PARAM_INT);
 
                 $resultado = $sql->execute();
                 if ($resultado) {
                     $this->status = true;
                     $this->message = "Favorita eliminada correctamente.";
-                    // $this->data = $id_vacante;
                 } else {
                     $this->message = "Error al eliminar la favorita.";
                 }
@@ -80,9 +74,5 @@ class Favorito extends Conexion
             $this->closeConnection();
         }
     }
-
-    // Método para obtener los alumnos de una determinada id_vacante y de una determinada unidad,
- 
-    }
-
+}
 ?>

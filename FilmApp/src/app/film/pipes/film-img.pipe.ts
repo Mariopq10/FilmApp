@@ -18,7 +18,7 @@ export class FilmImgPipe implements PipeTransform {
   transform(posterPath : string | null): string {
       if(posterPath?.endsWith("null")){
         console.log('noimg')
-        return '/assets/no-image1.jpg';
+        return '/assets/no-image.jpg';
       }else{
        return "https://image.tmdb.org/t/p/w500/" + posterPath
       }

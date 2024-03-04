@@ -8,27 +8,29 @@ import { Film } from '../../interfaces/film';
   templateUrl: './genre.component.html',
   styleUrls: ['./genre.component.css']
 })
+
+
 export class GenreComponent implements OnInit {
   filmArray: Film[] = []; // Array para almacenar las películas del género seleccionado
   genres: Genre[] = []; // Array para almacenar los géneros de películas disponibles
-  currentGenre: number = 0; // ID del género actualmente seleccionado
-  currentPage: number = 1; // Número de página actual para la carga de película
+  currentGenre: number = 0; // ID del genero actualmente seleccionado
+  currentPage: number = 1; // Numero de página actual para la carga de pelicula
 
   constructor(private filmService: FilmService) { }
 
   ngOnInit() {
-    // Obtener los géneros de películas disponibles al inicializar el componente
+    // Obtener los generos de peliculas disponibles al inicializar el componente
     this.filmService.getGenres().subscribe((genre: any) => { this.genres = genre.genres; console.log(genre) })
   }
 
 
   /**
-   * Método para obtener las películas de un género específico.
-   * @param genreId El ID del género de películas.
+   * Metodo para obtener las películas de un género específico.
+   * @param genreId El ID del genero de películas.
    * @param currentPage El número de página actual.
    */
   getByGenre(genreId: number, currentPage: number) {
-    // Verificar si ya se están mostrando películas del mismo género en la misma página
+    // Verificar si ya se estan mostrando peliculas del mismo genero en la misma pagina
     if (genreId == this.currentGenre) {
       this.filmService.getByGenre(genreId, currentPage).subscribe((films: any) => {
         this.filmArray = [...this.filmArray, ...films.results]
@@ -45,7 +47,7 @@ export class GenreComponent implements OnInit {
   }
 
   /**
-   * Método para cargar más películas del género seleccionado.
+   * Metodo para cargar mas peliculas del genero seleccionado.
    */
   loadMore() {
     this.currentPage++;

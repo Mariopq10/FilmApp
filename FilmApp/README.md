@@ -1,4 +1,5 @@
 # FilmApp
+# Author Mario Pérez Quintero
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
 
@@ -25,3 +26,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## About
+
+In this project we use a TMDB API to inject in film in this app.
+We can use it to search films, find top rated and films by genre. 

@@ -40,7 +40,7 @@ export class FilmPageComponent implements OnInit {
   }
 
   /**
-  * Método para alternar el estado de favoritos de la película.
+  * Método para alternar el estado de favorito de la película.
   */
   toggleFav() {
     if (this.fav) {
@@ -74,7 +74,7 @@ export class FilmPageComponent implements OnInit {
   }
 
   /**
-   * Método para eliminar la película de la lista de favoritos del usuario actual.
+   * Metodo para eliminar la película de la lista de favoritos del usuario actual.
    */
   async deleteFav() {
     this.fav = !this.fav; //Cambiamos estado de favorito.
@@ -91,12 +91,12 @@ export class FilmPageComponent implements OnInit {
   }
 
   /**
-   * Método para agregar la película a la lista de favoritos del usuario actual.
+   * Metodo para agregar la pelicula a la lista de favoritos del usuario actual.
    */
   async addFav() {
     this.fav = !this.fav; //Cambiamos estado de favorito.
     const id_pelicula = this.activatedRoute.snapshot.paramMap.get('id');
-    // Agregar la película a la lista de favoritos utilizando el servicio FavService
+    // Agregar la pelicula a la lista de favoritos utilizando el servicio FavService
     const response = await this.favService.addFav(localStorage.getItem('id_usuario'), id_pelicula).toPromise();
     console.log(response)
     if (response) {

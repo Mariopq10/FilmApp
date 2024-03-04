@@ -16,7 +16,7 @@
 
   <div class="text-center">
     <!-- Botón para cargar más resultados, se mostrará solo si filmList no está vacío -->
-    <button *ngIf="filmList.length>0; else emptyState" mat-stroked-button color="primary" (click)="loadMore()">Cargar más resultados</button>
+    <button *ngIf="filmList.length>0; else emptyState" mat-stroked-button color="primary" (click)="loadMore()">Show more results</button>
   </div>
   <ng-template #emptyState>
     <!-- Si filmList está vacío, mostrar un mensaje alternativo -->

@@ -1,0 +1,1250 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>film-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">film-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AuthService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/auth/services/auth.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkAdminRole" >checkAdminRole</a>
+                            </li>
+                            <li>
+                                <a href="#checkAuthentication" >checkAuthentication</a>
+                            </li>
+                            <li>
+                                <a href="#checkPassToken" >checkPassToken</a>
+                            </li>
+                            <li>
+                                <a href="#doLogin" >doLogin</a>
+                            </li>
+                            <li>
+                                <a href="#doLogout" >doLogout</a>
+                            </li>
+                            <li>
+                                <a href="#getCurrentUser" >getCurrentUser</a>
+                            </li>
+                            <li>
+                                <a href="#getUser" >getUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#isAuthenticated" >isAuthenticated</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#isLoged" >isLoged</a>
+                            </li>
+                            <li>
+                                <a href="#isUserAdmin" >isUserAdmin</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: HttpClient, cookieService: CookieService, commonService: <a href="../injectables/CommonService.html" target="_self">CommonService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, httpClient: HttpClient)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/auth/services/auth.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cookieService</td>
+                                                  
+                                                        <td>
+                                                                    <code>CookieService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>commonService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CommonService.html" target="_self" >CommonService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>httpClient</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkAdminRole"></a>
+                    <span class="name">
+                        <span ><b>checkAdminRole</b></span>
+                        <a href="#checkAdminRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkAdminRole()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>FUNCION DEPRECATED REALIZO UNA MEJOR LLAMADA isUserAdmin()
+Funcion checkAdminRole(), comprueba si el usuario logado, tiene como id_rol=1 para saber si es superadmin.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>boolean: True en caso de que el id_rol=1, en caso contrario devolverá false.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkAuthentication"></a>
+                    <span class="name">
+                        <span ><b>checkAuthentication</b></span>
+                        <a href="#checkAuthentication"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkAuthentication()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Funcion checkAuthentication(), se usa en el publicGuard, esa clase no se usa. Usamos isAuthenticated(url).</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkPassToken"></a>
+                    <span class="name">
+                        <span ><b>checkPassToken</b></span>
+                        <a href="#checkPassToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkPassToken(tokenPasswd: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tokenPasswd</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="doLogin"></a>
+                    <span class="name">
+                        <span ><b>doLogin</b></span>
+                        <a href="#doLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>doLogin(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Realiza el inicio de sesión enviando los datos al backend.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Los datos del formulario de inicio de sesión.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Un Observable que representa la respuesta del backend.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="doLogout"></a>
+                    <span class="name">
+                        <span ><b>doLogout</b></span>
+                        <a href="#doLogout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>doLogout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p> Funcion doLogout() que realiza el logout del usuario logado en ese momento. Elimina el localStorage</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Realiza la consulta al backend para realizar el logout</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCurrentUser"></a>
+                    <span class="name">
+                        <span ><b>getCurrentUser</b></span>
+                        <a href="#getCurrentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCurrentUser()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p> Funcion getCurrenUser(), obtiene el usuario actual y devuelve una &quot;copia&quot; del user.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/User.html" target="_self" >User | undefined</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>User que representa al usuario actual si esta definido y undefined en caso contrario.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUser"></a>
+                    <span class="name">
+                        <span ><b>getUser</b></span>
+                        <a href="#getUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUser()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Funcion getUser(), Crea un structuredClone del usuario que reciba el servicio.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User | undefined&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Devuelve una copia del usuario logado, o undefined en caso de que no este disponible.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAuthenticated"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>isAuthenticated</b></span>
+                        <a href="#isAuthenticated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isAuthenticated(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Funcion asincrona isAuthenticated(url) recibe la ruta para comprobar si el usuario esta autenticado o no, se usa para realizar comprobaciones en los guard.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>RouterStateSnapshot que recibirá en los Guard.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True en caso de que el usuario este autenticado y false en caso contrario.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoged"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>isLoged</b></span>
+                        <a href="#isLoged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isLoged()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Funcion asincrona isLoged() Se usa en no-auth.guard.ts</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>boolean: true en caso de que el usuario este logeado y false en caso de que no lo este</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUserAdmin"></a>
+                    <span class="name">
+                        <span ><b>isUserAdmin</b></span>
+                        <a href="#isUserAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isUserAdmin()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/auth/services/auth.service.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p> Funcion isUserAdmin() comprueba si el usuario logado tiene id_rol=1, superadmin.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Devuelve true en caso de que el id_rol sea &#39;1&#39; o false en caso contrario.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/User.html" target="_self" >User | undefined</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/auth/services/auth.service.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { URL_API } from &#x27;src/environments/environment&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Observable, of } from &#x27;rxjs&#x27;;
+import { User } from &#x27;../interfaces/user.interface&#x27;;
+import { catchError, map, tap } from &#x27;rxjs/operators&#x27;;
+import { CookieService } from &#x27;ngx-cookie-service&#x27;;
+import { URL_BASE } from &#x27;../../../environments/environment&#x27;;
+import { ApiResponse } from &#x27;../../shared/interfaces/api-response&#x27;;
+import { CommonService } from &#x27;src/app/shared/validators/common.service&#x27;;
+import { UserService } from &#x27;../../users/services/users.service&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+
+// Servicio AuthService que realizará consultar al backend relacionadas con el usuario.
+export class AuthService {
+
+  private user?: User | undefined;
+
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private commonService: CommonService,
+    private userService: UserService,
+    private httpClient: HttpClient
+  ) { }
+
+
+  /**
+   * Realiza el inicio de sesión enviando los datos al backend.
+   * @param data Los datos del formulario de inicio de sesión.
+   * @returns Un Observable que representa la respuesta del backend.
+   */
+  doLogin(data: any) {
+    const body &#x3D; JSON.stringify(data);
+    return this.http.post&lt;ApiResponse&gt;(&#x60;${URL_API}/login.php&#x60;, body);
+  }
+
+
+  /**
+   *  Funcion getCurrenUser(), obtiene el usuario actual y devuelve una &quot;copia&quot; del user.
+   * @returns User que representa al usuario actual si esta definido y undefined en caso contrario.
+   */
+  getCurrentUser(): User | undefined {
+    if (!this.user) {
+      return undefined;
+    }
+    return structuredClone(this.user)
+  }
+
+  /**
+   * Funcion checkAuthentication(), se usa en el publicGuard, esa clase no se usa. Usamos isAuthenticated(url).
+   * @returns
+   */
+  checkAuthentication(): Observable&lt;boolean&gt; {
+    // Si no hay token se devuelve false
+    if (!localStorage.getItem(&#x27;token&#x27;)) return of(false);
+
+    const TOKEN &#x3D; localStorage.getItem(&#x27;token&#x27;);
+
+    return this.httpClient.get&lt;User&gt;(&#x60;${URL_API}/usuario.php&#x60;)
+      .pipe(
+        tap(user &#x3D;&gt; this.user &#x3D; user), // Almacenamos el usuario en la propiedad de nuestro servicio.
+        map(user &#x3D;&gt; !!user), // Es lo mismo que &quot;map ( user &#x3D;&gt; user? true : false)&quot;, si hay user se devuelve true, sino false
+        catchError(err &#x3D;&gt; of(false))
+      )
+  }
+
+  /**
+   * Funcion asincrona isAuthenticated(url) recibe la ruta para comprobar si el usuario esta autenticado o no, se usa para realizar comprobaciones en los guard.
+   * @param url RouterStateSnapshot que recibirá en los Guard.
+   * @returns True en caso de que el usuario este autenticado y false en caso contrario.
+   */
+  public async isAuthenticated(url: string): Promise&lt;boolean&gt; {
+    let rutaSeleccionada: string;
+    const promise &#x3D; new Promise&lt;boolean&gt;((resolve, reject) &#x3D;&gt; {
+
+      rutaSeleccionada &#x3D; url.substring(1);
+      rutaSeleccionada &#x3D; rutaSeleccionada.split(&#x27;/&#x27;)[0];
+
+      this.http.get&lt;ApiResponse&gt;(&#x60;${URL_API}/check_usuarios.php?ruta&#x3D;${rutaSeleccionada}&#x60;, { headers: this.commonService.getHeaders() }) //Llama a check_usuarios.php y realiza las comprobaciones respecto al usuario.
+        .subscribe((response: ApiResponse) &#x3D;&gt; {
+          console.log(response)
+          resolve(response.ok);
+        });
+    });
+    return promise;
+  }
+
+  /**
+   * Funcion asincrona isLoged() Se usa en no-auth.guard.ts
+   * @returns boolean: true en caso de que el usuario este logeado y false en caso de que no lo este
+   */
+  public async isLoged(): Promise&lt;boolean&gt; {
+    const promise &#x3D; new Promise&lt;boolean&gt;((resolve, reject) &#x3D;&gt; {
+      this.http.get&lt;ApiResponse&gt;(&#x60;${URL_API}/check_usuarios.php?ruta&#x3D;inicio&#x60;, { headers: this.commonService.getHeaders() })
+        .subscribe((response: ApiResponse) &#x3D;&gt; {
+          console.log(response)
+          resolve(response.ok);
+        });
+    });
+    return promise;
+  }
+
+  /**
+   *  Funcion doLogout() que realiza el logout del usuario logado en ese momento. Elimina el localStorage
+   * @returns Realiza la consulta al backend para realizar el logout
+   */
+  doLogout() {
+    const body &#x3D; new FormData();
+    const usuario &#x3D; localStorage.getItem(&#x27;usuario&#x27;);
+    if (usuario !&#x3D;&#x3D; null) {
+      body.append(&#x27;user&#x27;, usuario);
+    } else {
+      // Tratar el caso en que usuario sea null
+      console.error(&#x27;El usuario no está definido en el localStorage.&#x27;);
+      return;
+    }
+    // Borramos los datos del localStorage.
+    this.cookieService.deleteAll();
+    localStorage.clear();
+    // Realizamos el logout desde el backend.
+    return this.http.post(&#x60;${URL_API}/logout.php&#x60;, body);
+  }
+
+  // TODO
+  // resetPassword(formularioCorreo) {
+  //   const body &#x3D; JSON.stringify(formularioCorreo);
+  //   return this.http.post&lt;ApiResponse&gt;(&#x60;${URL_API}/olvidar_pwd.php&#x60;, body, {headers: this.commonService.headers});
+  // }
+
+  checkPassToken(tokenPasswd: string) {
+    const body &#x3D; JSON.stringify({ token: tokenPasswd });
+    return this.http.post&lt;ApiResponse&gt;(&#x60;${URL_API}/check_token_passwd.php&#x60;, body);
+  }
+
+  //TODO
+  // generateNewPass(data: any) {
+  //   const body &#x3D; JSON.stringify(data);
+  //   return this.http.put&lt;ApiResponse&gt;(&#x60;${URL_API}/reset_pass.php&#x60;, body);
+  // }
+
+
+  /** FUNCION DEPRECATED REALIZO UNA MEJOR LLAMADA isUserAdmin()
+   * Funcion checkAdminRole(), comprueba si el usuario logado, tiene como id_rol&#x3D;1 para saber si es superadmin.
+   * @returns boolean: True en caso de que el id_rol&#x3D;1, en caso contrario devolverá false.
+   */
+  checkAdminRole(): Promise&lt;boolean&gt; {
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      const user &#x3D; this.getCurrentUser();
+      console.log(user)
+      if (user &amp;&amp; user.id_rol &#x3D;&#x3D; &#x27;1&#x27;) {
+        resolve(true);
+      } else {
+        resolve(false)
+      }
+      console.log(resolve)
+    })
+  }
+
+  //Comprobaciones para AdminGuard, recogemos la id_rol del usuario actual.
+  /**
+   * Funcion getUser(), Crea un structuredClone del usuario que reciba el servicio.
+   * @returns Devuelve una copia del usuario logado, o undefined en caso de que no este disponible.
+   */
+  getUser(): Observable&lt;User | undefined&gt; {
+    console.log(this.user)
+    if (this.user) {
+      return of(structuredClone(this.user));
+    } else {
+      // Si el usuario no está disponible, puedes devolver un observable vacío o un observable de &#x27;undefined&#x27;
+      return of(undefined);
+    }
+  }
+
+  /**
+   *  Funcion isUserAdmin() comprueba si el usuario logado tiene id_rol&#x3D;1, superadmin.
+   * @returns Devuelve true en caso de que el id_rol sea &#x27;1&#x27; o false en caso contrario.
+   */
+  isUserAdmin(): Observable&lt;boolean&gt; {
+    return this.getUser().pipe(
+      map(user2 &#x3D;&gt; !!user2 &amp;&amp; user2.id_rol &#x3D;&#x3D; &#x27;1&#x27;),
+      catchError(() &#x3D;&gt; of(false)) // Manejar cualquier error devolviendo false
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// get curretUser(): User | undefined {
+//   if ( !this.user ) return undefined;
+
+//   return structuredClone( this.user )
+// }
+
+// constructor( private http: HttpClient,
+//              private router: Router) { }
+
+// login(): Observable&lt;User&gt; {
+//   return this.http.get&lt;User&gt;(&#x60;${ this.baseUrl }/users/1&#x60;)
+//     .pipe(
+//       tap ( user &#x3D;&gt; this.user &#x3D; user),
+//       tap ( user &#x3D;&gt; localStorage.setItem(&#x27;token&#x27;, user.id.toString()))
+//     );
+// }
+
+
+
+// get currentUser(): User | undefined{
+//   if(!this.user) return undefined;
+//   return structuredClone( this.user )
+// }
+
+// logout() : void{
+//   this.user &#x3D; undefined
+//   localStorage.clear()
+// }
+
+// isLogged() : boolean {
+//   return !!this.user
+// }
+
+// checkAuthentication() : Observable&lt;boolean&gt; {
+//   if (!localStorage.getItem(&#x27;token&#x27;)) return of (false);
+
+//   const token &#x3D; localStorage.getItem(&#x27;token&#x27;)
+
+//   return this.http.get&lt;User&gt;(&#x60;${ this.baseUrl}/users/1&#x60;)
+//   .pipe(
+//     tap( user &#x3D;&gt; this.user &#x3D; user),
+//     map( user &#x3D;&gt; !!user),
+//     catchError ( err &#x3D;&gt; of(false))
+//     )
+// }
+
+
+// logout(): void {
+//   this.user &#x3D; undefined;
+//   localStorage.removeItem(&#x27;token&#x27;);
+//   this.router.navigate([&#x27;./auth/login&#x27;]);
+// }
+
+//   verificaAutenticacion(): Observable&lt;boolean&gt;{
+
+//     if ( !localStorage.getItem(&#x27;token&#x27; )){
+//       return of (false);
+//     }
+
+//     return this.http.get&lt;User&gt;(&#x60;${ this.baseUrl }/users/1&#x60;).pipe(
+//       map( user &#x3D;&gt; {
+//         console.log(&#x27;map&#x27;, user);
+//         this.user &#x3D; user;
+//         return true;
+//       })
+//     );
+//   }
+
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuthService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

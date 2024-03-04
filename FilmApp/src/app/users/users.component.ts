@@ -49,12 +49,16 @@ export class UsersComponent implements OnInit {
     public dialog: MatDialog,
     private userService: UserService,
     private overlay: Overlay
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getusers();
   }
 
+  /**
+   * Metodo asincrono que obtiene la lista de usuarios desde el servicio userService
+   * Actualiza la interfaz con los usuarios obtenidos.
+   */
   async getusers() {
     const RESPONSE = await this.userService.getAllUsuarios().toPromise();
 
@@ -80,6 +84,10 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  /**
+   * Metodo asincrono para agregar un nuevo usuario, este metodo lanzara una nueva ventana en la cual ingresaremos los datos del nuevo usuario.
+   * En caso de que RESP sea correcta, hara un push en el array de users con los datos de la respuesta.
+   */
   async addUsuario() {
     const dialogRef = this.dialog.open(AddUserComponent, {
       width: '500px',
@@ -94,6 +102,12 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  /**
+   * Metodo asincrono para editar un usuario existente.
+   * Lanza una ventana para editar los datos del usuario seleccionado.
+   * En caso de que RESP sea correcta, hara un update del usuario con los datos de la respuesta.
+   * @param user El usuario que se va a editar.
+   */
   async editUsuario(user: User) {
     const dialogRef = this.dialog.open(EditUserComponent, {
       data: user,
@@ -109,6 +123,12 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  /**
+   * Metodo asincrono para eliminar un usuario existente.
+   * Lanza una ventana para confirmar la eliminación del usuario seleccionado.
+   * En caso de que RESP sea valido, se llama a removeUsuario
+   * @param user El usuario que se va a eliminar.
+   */
   async deleteUsuario(user: User) {
     const dialogRef = this.dialog.open(DeleteUserComponent, {
       data: user,
@@ -123,6 +143,11 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  /**
+   * Metodo para crear un filtro de filtro personalizado para la tabla de usuarios.
+   * @returns Una función que evalúa si un usuario cumple con los términos de búsqueda especificados.
+   * NO SE USA
+   */
   createFilter(): (usuario: any, filter: string) => boolean {
     const filterFunction = (usuario: any, filter: string): boolean => {
       const searchTerms = JSON.parse(filter);
@@ -137,7 +162,7 @@ export class UsersComponent implements OnInit {
           .toLowerCase()
           .indexOf(searchTerms.nombre_publico.toLowerCase()) !== -1 &&
         usuario.rol.toLowerCase().indexOf(searchTerms.rol.toLowerCase()) !==
-          -1 &&
+        -1 &&
         searchTerms.habilitado === 'todos'
         ? usuario.habilitado
         : usuario.habilitado.indexOf(searchTerms.habilitado) !== -1;
@@ -146,6 +171,10 @@ export class UsersComponent implements OnInit {
     return filterFunction;
   }
 
+  /**
+   * MEtodo para establecer suscripciones a los cambios en los filtros de busqueda.
+   * Actualiza los valores de filtro y aplica el filtro a la fuente de datos de la tabla cuando cambia el valor de un filtro.
+   */
   onChanges(): void {
     this.idFilter.valueChanges.subscribe((value) => {
       this.filterValues.id_usuario = value;
@@ -168,6 +197,10 @@ export class UsersComponent implements OnInit {
     });
   }
 
+/**
+ * Metodo para buscar usuarios según su estado
+ * @param event El evento que desencadena la búsqueda, contiene el valor seleccionado para el estado.
+ */
   buscarHabilitados(event: any) {
     let value: number;
 

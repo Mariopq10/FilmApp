@@ -14,7 +14,7 @@
 </div>
 
 <div class="text-center">
-  <button mat-stroked-button color="primary"  *ngIf="filmArray.length>0 ; else emptyState" (click)="loadMore()">Cargar más resultados</button>
+  <button mat-stroked-button color="primary"  *ngIf="filmArray.length>0 ; else emptyState" (click)="loadMore()">Show more results...</button>
   <ng-template #emptyState>
     <!-- Si filmArray está vacío, mostrar un mensaje alternativo -->
     <strong>Select Genre</strong>
